@@ -40,7 +40,7 @@ struct AccountButtons: View {
                         .frame(width: 320, height: 60, alignment: .center)
                 }
             }
-        } else if buttonType == .login {
+        } else if buttonType == .other {
             Button {
                 action()
             } label: {
@@ -57,35 +57,19 @@ struct AccountButtons: View {
                         .frame(width: 320, height: 60, alignment: .center)
                 }
             }
-        } else if buttonType == .other {
-//            RoundedRectangle(cornerRadius: 36)
-//                .stroke(Color.black, lineWidth: 1)
-//                .opacity(0.3)
-//                .foregroundColor(.white)
-//                .frame(width: 320, height: 60, alignment: .center)
-//                .overlay {
-//                    Text("Create Account")
-//                        .fontWeight(.heavy)
-//                        .foregroundColor(.white)
-//                        .font(.title3)
-//                        .padding()
-//                }
-            Button {
-                action()
-            } label: {
-                HStack(spacing: -4) {
-                    Text("Create account")
-                        .fontWeight(.bold)
-                        .font(.title3)
+        } else {
+            RoundedRectangle(cornerRadius: 36)
+                .stroke(Color.black, lineWidth: 1)
+                .opacity(0.3)
+                .foregroundColor(.white)
+                .frame(width: 320, height: 60, alignment: .center)
+                .overlay {
+                    Text("Create Account")
+                        .fontWeight(.heavy)
                         .foregroundColor(.white)
+                        .font(.title3)
                         .padding()
-                }.overlay {
-                    RoundedRectangle(cornerRadius: 36)
-                        .stroke(Color.black, lineWidth: 1)
-                        .opacity(0.3)
-                        .frame(width: 320, height: 60, alignment: .center)
                 }
-            }
         }
     }
 }
