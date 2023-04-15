@@ -13,7 +13,13 @@ const { restart } = require('nodemon');
 
 router.post(
 	'/',
-	[auth, [check('text', 'Text is required').not().isEmpty()]], //do not need to check for user name and avatar because we will request for that using the user id that we get from the token
+	[
+		auth,
+		[
+			check('text', 'Text is required').not().isEmpty(),
+			check('location', 'Location is required').not().isEmpty(),
+		],
+	],
 	async (req, res) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
@@ -27,6 +33,7 @@ router.post(
 			const newPost = new Post({
 				text: req.body.text,
 				name: user.name,
+				location: req.body.location,
 				motive: req.body.motive,
 				avatar: profile.avatar,
 				user: req.user.id,

@@ -19,6 +19,10 @@ const PostSchema = new mongoose.Schema({
 	avatar: {
 		type: Buffer,
 	},
+	location: {
+		type: String,
+		required: true,
+	},
 	date: {
 		type: Date,
 		default: Date.now,
