@@ -12,13 +12,6 @@ struct MessageCell: View {
 
     var body: some View {
         HStack {
-            Image(systemName: "person.fill")
-                .font(.system(size: 30))
-                .padding()
-                .overlay {
-                    RoundedRectangle(cornerRadius: 44)
-                        .stroke(Color.black, lineWidth: 1)
-                }
             VStack(alignment: .leading) {
                 Text(message.sender)
                     .fontWeight(.bold)

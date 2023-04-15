@@ -12,9 +12,11 @@ fileprivate enum TabState: Int {
 }
 
 struct MainView: View {
+    var messages: [Message] = [
+        Message(sender: "Matt", body: "Hey!")
+    ]
     var body: some View {
         ZStack {
-
             tabBarView
         }
     }
@@ -33,7 +35,7 @@ struct MainView: View {
                     Image(systemName: "map")
                 }
                 .toolbar(.hidden)
-            MessageView()
+            MessageListView(messages: messages)
                 .tabItem {
                     Image(systemName: "message")
                 }
