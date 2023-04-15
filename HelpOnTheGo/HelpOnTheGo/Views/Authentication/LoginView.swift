@@ -58,8 +58,9 @@ struct LoginView: View {
                             print(error?.localizedDescription)
                             return
                         }
-
-                        print("Logged in, \(result)")
+                        self.isLoggedin.toggle()
+                        print("Logged in, \(result?.user.uid)")
+                        storeUserDataToFirestore()
                     }
                 }
             } label: {
@@ -73,8 +74,22 @@ struct LoginView: View {
                     }
             }
 
-            NavigationLink(destination: MainView(), isActive: $isLoggedin) { EmptyView() }
+            NavigationLink(destination: MainView().toolbar(.hidden), isActive: $isLoggedin) { EmptyView() }
         }.padding()
+    }
+    
+    private func storeUserDataToFirestore() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+
+        let userData = ["email" : email, "uid" : uid]
+        FirebaseManager.shared.firestore.collection("users")
+            .document(uid)
+            .setData(userData) { error in
+                if let err = error {
+                    print(err)
+                    return
+                }
+            }
     }
 }
 

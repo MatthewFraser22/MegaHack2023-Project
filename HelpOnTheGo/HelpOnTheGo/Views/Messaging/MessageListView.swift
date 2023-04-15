@@ -11,33 +11,59 @@ struct MessageListView: View {
     var messages: [Message] // load from db
     @State var selectedMessage: Message? = nil
     @State var toggleMessageChat: Bool = false
+    @ObservedObject private var vm = MessageViewModel()
 
     var body: some View {
-        ScrollView(.vertical) {
-            ZStack {
-                Text("Messages")
-                    .foregroundColor(.backgroundColor)
-                    .font(.largeTitle)
-                Image("message")
-                    .resizable()
-            }
+        NavigationView {
+            ScrollView(.vertical) {
+                VStack {
+                    Text("Messages")
+                        .foregroundColor(.backgroundColor)
+                        .font(.largeTitle)
+                    HStack {
+                        Image(systemName: "person.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
 
-            Divider()
-
-            ForEach(messages, id: \.id) { message in
-                MessageCell(message: message)
-                    .onTapGesture {
-                        self.selectedMessage = message
-                        
-                        withAnimation {
-                            self.toggleMessageChat = true
+                        VStack(alignment: .leading) {
+                            Text("Email: \(vm.chatUser?.email ?? "")")
+                                .fontWeight(.bold)
+                            HStack {
+                                Text("online")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.black)
+                                Circle()
+                                    .foregroundColor(.green)
+                                    .frame(width: 15, height: 15)
+                            }
                         }
-                    }
-                Divider()
-            }
-            
 
-            NavigationLink(destination: MessagePersonView(), isActive: $toggleMessageChat, label: { EmptyView() } )
+                        Spacer(minLength: 0)
+            
+                        Image(systemName: "message")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(.blue)
+                        
+                    }.padding()
+                }
+
+                Divider()
+
+                ForEach(messages, id: \.id) { message in
+                    MessageCell(message: message)
+                        .onTapGesture {
+                            self.selectedMessage = message
+                            
+                            withAnimation {
+                                self.toggleMessageChat = true
+                            }
+                        }
+                    Divider()
+                }
+
+                NavigationLink(destination: MessagePersonView(), isActive: $toggleMessageChat, label: { EmptyView() } )
+            }
         }
     }
 }

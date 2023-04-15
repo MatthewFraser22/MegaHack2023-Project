@@ -41,6 +41,7 @@
 		99E7215C29EB4D500005B48C /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 99E7215B29EB4D500005B48C /* FirebaseInAppMessagingSwift-Beta */; };
 		99E7215E29EB4D500005B48C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 99E7215D29EB4D500005B48C /* FirebaseMessaging */; };
 		99E7216029EB4D500005B48C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 99E7215F29EB4D500005B48C /* FirebaseStorage */; };
+		99E7216329EB58800005B48C /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7216229EB58800005B48C /* FirebaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		99E7214E29EB3E3B0005B48C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		99E7215029EB3F120005B48C /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		99E7215229EB45240005B48C /* MessagePersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePersonView.swift; sourceTree = "<group>"; };
+		99E7216229EB58800005B48C /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +115,9 @@
 		99E720F929EAD7C90005B48C /* HelpOnTheGo */ = {
 			isa = PBXGroup;
 			children = (
-				99E7214329EB15F20005B48C /* Models */,
 				99E7213B29EB0B690005B48C /* Info.plist */,
+				99E7216129EB58740005B48C /* Managers */,
+				99E7214329EB15F20005B48C /* Models */,
 				99E7213E29EB15250005B48C /* ViewModel */,
 				99E7213629EAFF000005B48C /* Location */,
 				99E7212E29EAE4CB0005B48C /* Extensions */,
@@ -249,6 +252,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		99E7216129EB58740005B48C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				99E7216229EB58800005B48C /* FirebaseManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -331,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99E7216329EB58800005B48C /* FirebaseManager.swift in Sources */,
 				99E7211529EADA2B0005B48C /* PostView.swift in Sources */,
 				99E7211929EADBC00005B48C /* MapView.swift in Sources */,
 				99E7211E29EADBF80005B48C /* ProfileView.swift in Sources */,
