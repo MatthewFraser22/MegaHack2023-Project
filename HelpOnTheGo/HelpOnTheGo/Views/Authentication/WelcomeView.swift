@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @State var toggleLoginView: Bool = false
+    @State var toggleRegisterView: Bool = false
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -75,7 +78,11 @@ struct WelcomeView: View {
             }
 
             AccountButtons(buttonType: .other) {
-                print("other sign up")
+                self.toggleRegisterView.toggle()
+            }
+
+            NavigationLink(destination: RegisterView().toolbar(.hidden), isActive: $toggleRegisterView) {
+                EmptyView()
             }
         }.padding(8)
     }
@@ -85,16 +92,14 @@ struct WelcomeView: View {
             Text("Already have an account ?")
                 .foregroundColor(.white)
                 .fontWeight(.bold)
-            NavigationLink {
-                LoginView()
-                    .toolbar(.hidden)
-            } label: {
-                AccountButtons(buttonType: .login) {
-                    print("login")
-                }
-            }
 
-            
+            AccountButtons(buttonType: .login) {
+                self.toggleLoginView.toggle()
+            }
+    
+            NavigationLink(destination: LoginView().toolbar(.hidden), isActive: $toggleLoginView) {
+                EmptyView()
+            }
         }
     }
 }
