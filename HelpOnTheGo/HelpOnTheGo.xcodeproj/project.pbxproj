@@ -26,6 +26,9 @@
 		99E7212929EAE2D90005B48C /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 99E7212829EAE2D90005B48C /* FirebaseInAppMessaging-Beta */; };
 		99E7212B29EAE2D90005B48C /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 99E7212A29EAE2D90005B48C /* FirebaseInAppMessagingSwift-Beta */; };
 		99E7212D29EAE2D90005B48C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 99E7212C29EAE2D90005B48C /* FirebaseMessaging */; };
+		99E7213029EAE4DC0005B48C /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7212F29EAE4DC0005B48C /* Color+Extensions.swift */; };
+		99E7213229EAE6E80005B48C /* AccountButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7213129EAE6E80005B48C /* AccountButtons.swift */; };
+		99E7213529EAF9AE0005B48C /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7213429EAF9AE0005B48C /* LoginTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		99E7211A29EADBD50005B48C /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		99E7211D29EADBF80005B48C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		99E7211F29EAE15A0005B48C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		99E7212F29EAE4DC0005B48C /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		99E7213129EAE6E80005B48C /* AccountButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtons.swift; sourceTree = "<group>"; };
+		99E7213429EAF9AE0005B48C /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 		99E720F929EAD7C90005B48C /* HelpOnTheGo */ = {
 			isa = PBXGroup;
 			children = (
+				99E7212E29EAE4CB0005B48C /* Extensions */,
 				99E7210829EAD89C0005B48C /* Views */,
 				99E720FE29EAD7CB0005B48C /* Assets.xcassets */,
 				99E7210029EAD7CB0005B48C /* Preview Content */,
@@ -100,6 +107,7 @@
 		99E7210829EAD89C0005B48C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				99E7213329EAEA610005B48C /* Items */,
 				99E7211C29EADBEC0005B48C /* Profile */,
 				99E7211729EADBAE0005B48C /* Map */,
 				99E7211629EADBA10005B48C /* Messaging */,
@@ -160,6 +168,23 @@
 				99E7211D29EADBF80005B48C /* ProfileView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		99E7212E29EAE4CB0005B48C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				99E7212F29EAE4DC0005B48C /* Color+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		99E7213329EAEA610005B48C /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				99E7213129EAE6E80005B48C /* AccountButtons.swift */,
+				99E7213429EAF9AE0005B48C /* LoginTextField.swift */,
+			);
+			path = Items;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,12 +272,15 @@
 				99E7211529EADA2B0005B48C /* PostView.swift in Sources */,
 				99E7211929EADBC00005B48C /* MapView.swift in Sources */,
 				99E7211E29EADBF80005B48C /* ProfileView.swift in Sources */,
+				99E7213529EAF9AE0005B48C /* LoginTextField.swift in Sources */,
 				99E720FD29EAD7C90005B48C /* ContentView.swift in Sources */,
 				99E7211B29EADBD50005B48C /* MessageView.swift in Sources */,
 				99E7211229EAD90C0005B48C /* MainView.swift in Sources */,
 				99E7210D29EAD8E20005B48C /* RegisterView.swift in Sources */,
 				99E7210B29EAD8CA0005B48C /* WelcomeView.swift in Sources */,
 				99E7210F29EAD8EC0005B48C /* LoginView.swift in Sources */,
+				99E7213229EAE6E80005B48C /* AccountButtons.swift in Sources */,
+				99E7213029EAE4DC0005B48C /* Color+Extensions.swift in Sources */,
 				99E720FB29EAD7C90005B48C /* HelpOnTheGoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
