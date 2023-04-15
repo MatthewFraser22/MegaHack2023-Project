@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>865116729754-remhe8vnidcm092d94iq65e8f4k0mgu7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.865116729754-remhe8vnidcm092d94iq65e8f4k0mgu7</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBeHoH8PwrQyHWcF4g1UZlNWTiPxPY0y6s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>865116729754</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.fraser.matthew.HelpOnTheGo</string>
+	<key>PROJECT_ID</key>
+	<string>helponthego</string>
+	<key>STORAGE_BUCKET</key>
+	<string>helponthego.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:865116729754:ios:caf20e019837c66cac8a23</string>
+</dict>
+</plist>

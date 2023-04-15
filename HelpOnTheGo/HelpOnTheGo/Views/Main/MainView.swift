@@ -25,8 +25,6 @@ struct MainView: View {
             PostView()
                 .tabItem {
                     Image(systemName: "house")
-                        .renderingMode(.template)
-                        .foregroundColor(.gray)
                 }
             MapView()
                 .tabItem {
