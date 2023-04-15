@@ -87,6 +87,7 @@ struct WelcomeView: View {
                 .fontWeight(.bold)
             NavigationLink {
                 LoginView()
+                    .toolbar(.hidden)
             } label: {
                 AccountButtons(buttonType: .login) {
                     print("login")

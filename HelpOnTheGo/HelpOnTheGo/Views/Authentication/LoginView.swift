@@ -13,17 +13,21 @@ struct LoginView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        VStack {
-            topBar
-            CustomAuthTextField(placeholder: "To get started enter your username", isSecureTxtField: false, text: $username)
-            CustomAuthTextField(placeholder: "password", isSecureTxtField: true, text: $password)
-            
-            loginButton
-            
-            Spacer(minLength: 0)
+        NavigationView {
+            VStack {
+                topBar
+                CustomAuthTextField(placeholder: "To get started enter your username", isSecureTxtField: false, text: $username)
+                CustomAuthTextField(placeholder: "password", isSecureTxtField: true, text: $password)
+                
+                loginButton
+                
+                Spacer(minLength: 0)
+            }
+            .navigationTitle("")
+            .toolbar(.hidden)
         }
     }
-    
+
     private var topBar: some View {
         HStack {
             Button {
@@ -42,7 +46,7 @@ struct LoginView: View {
         }
         .padding()
     }
-    
+
     private var loginButton: some View {
         VStack {
             NavigationLink {

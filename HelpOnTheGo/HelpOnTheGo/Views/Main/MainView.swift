@@ -14,6 +14,7 @@ fileprivate enum TabState: Int {
 struct MainView: View {
     var body: some View {
         ZStack {
+
             tabBarView
         }
     }
@@ -26,19 +27,23 @@ struct MainView: View {
                 .tabItem {
                     Image(systemName: "house")
                 }
+                .toolbar(.hidden)
             MapView()
                 .tabItem {
                     Image(systemName: "map")
                 }
+                .toolbar(.hidden)
             MessageView()
                 .tabItem {
                     Image(systemName: "message")
                 }
+                .toolbar(.hidden)
             ProfileView()
                 .tabItem {
                     Image(systemName: "person.crop.circle")
                 }
-        }
+                .toolbar(.hidden)
+        }.tint(Color.backgroundColor)
     }
 }
 

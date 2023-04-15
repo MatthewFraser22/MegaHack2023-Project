@@ -29,6 +29,14 @@
 		99E7213029EAE4DC0005B48C /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7212F29EAE4DC0005B48C /* Color+Extensions.swift */; };
 		99E7213229EAE6E80005B48C /* AccountButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7213129EAE6E80005B48C /* AccountButtons.swift */; };
 		99E7213529EAF9AE0005B48C /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7213429EAF9AE0005B48C /* LoginTextField.swift */; };
+		99E7213829EAFF0D0005B48C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7213729EAFF0D0005B48C /* LocationManager.swift */; };
+		99E7213D29EB12DF0005B48C /* MKCoordinateRegion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7213C29EB12DF0005B48C /* MKCoordinateRegion+Extensions.swift */; };
+		99E7214029EB15550005B48C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7213F29EB15550005B48C /* UserViewModel.swift */; };
+		99E7214229EB15DA0005B48C /* LocationPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7214129EB15DA0005B48C /* LocationPreviewView.swift */; };
+		99E7214529EB15FD0005B48C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7214429EB15FD0005B48C /* User.swift */; };
+		99E7214729EB19840005B48C /* LocationMapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7214629EB19840005B48C /* LocationMapAnnotationView.swift */; };
+		99E7214929EB1A950005B48C /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7214829EB1A950005B48C /* LocationViewModel.swift */; };
+		99E7214B29EB1B420005B48C /* UserLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7214A29EB1B420005B48C /* UserLocationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +57,15 @@
 		99E7212F29EAE4DC0005B48C /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		99E7213129EAE6E80005B48C /* AccountButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtons.swift; sourceTree = "<group>"; };
 		99E7213429EAF9AE0005B48C /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		99E7213729EAFF0D0005B48C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		99E7213B29EB0B690005B48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		99E7213C29EB12DF0005B48C /* MKCoordinateRegion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+Extensions.swift"; sourceTree = "<group>"; };
+		99E7213F29EB15550005B48C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		99E7214129EB15DA0005B48C /* LocationPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPreviewView.swift; sourceTree = "<group>"; };
+		99E7214429EB15FD0005B48C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		99E7214629EB19840005B48C /* LocationMapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapAnnotationView.swift; sourceTree = "<group>"; };
+		99E7214829EB1A950005B48C /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		99E7214A29EB1B420005B48C /* UserLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +105,10 @@
 		99E720F929EAD7C90005B48C /* HelpOnTheGo */ = {
 			isa = PBXGroup;
 			children = (
+				99E7214329EB15F20005B48C /* Models */,
+				99E7213B29EB0B690005B48C /* Info.plist */,
+				99E7213E29EB15250005B48C /* ViewModel */,
+				99E7213629EAFF000005B48C /* Location */,
 				99E7212E29EAE4CB0005B48C /* Extensions */,
 				99E7210829EAD89C0005B48C /* Views */,
 				99E720FE29EAD7CB0005B48C /* Assets.xcassets */,
@@ -114,8 +135,6 @@
 				99E7211329EADA1E0005B48C /* Post */,
 				99E7211029EAD8FE0005B48C /* Main */,
 				99E7210929EAD8AC0005B48C /* Authentication */,
-				99E720FC29EAD7C90005B48C /* ContentView.swift */,
-				99E720FA29EAD7C90005B48C /* HelpOnTheGoApp.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,6 +152,8 @@
 		99E7211029EAD8FE0005B48C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				99E720FA29EAD7C90005B48C /* HelpOnTheGoApp.swift */,
+				99E720FC29EAD7C90005B48C /* ContentView.swift */,
 				99E7211129EAD90C0005B48C /* MainView.swift */,
 			);
 			path = Main;
@@ -158,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				99E7211829EADBC00005B48C /* MapView.swift */,
+				99E7214129EB15DA0005B48C /* LocationPreviewView.swift */,
+				99E7214629EB19840005B48C /* LocationMapAnnotationView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -174,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				99E7212F29EAE4DC0005B48C /* Color+Extensions.swift */,
+				99E7213C29EB12DF0005B48C /* MKCoordinateRegion+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -185,6 +209,32 @@
 				99E7213429EAF9AE0005B48C /* LoginTextField.swift */,
 			);
 			path = Items;
+			sourceTree = "<group>";
+		};
+		99E7213629EAFF000005B48C /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				99E7213729EAFF0D0005B48C /* LocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		99E7213E29EB15250005B48C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				99E7213F29EB15550005B48C /* UserViewModel.swift */,
+				99E7214829EB1A950005B48C /* LocationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		99E7214329EB15F20005B48C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				99E7214429EB15FD0005B48C /* User.swift */,
+				99E7214A29EB1B420005B48C /* UserLocationModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,15 +322,23 @@
 				99E7211529EADA2B0005B48C /* PostView.swift in Sources */,
 				99E7211929EADBC00005B48C /* MapView.swift in Sources */,
 				99E7211E29EADBF80005B48C /* ProfileView.swift in Sources */,
+				99E7214929EB1A950005B48C /* LocationViewModel.swift in Sources */,
 				99E7213529EAF9AE0005B48C /* LoginTextField.swift in Sources */,
 				99E720FD29EAD7C90005B48C /* ContentView.swift in Sources */,
+				99E7213D29EB12DF0005B48C /* MKCoordinateRegion+Extensions.swift in Sources */,
 				99E7211B29EADBD50005B48C /* MessageView.swift in Sources */,
+				99E7214229EB15DA0005B48C /* LocationPreviewView.swift in Sources */,
 				99E7211229EAD90C0005B48C /* MainView.swift in Sources */,
 				99E7210D29EAD8E20005B48C /* RegisterView.swift in Sources */,
+				99E7214029EB15550005B48C /* UserViewModel.swift in Sources */,
 				99E7210B29EAD8CA0005B48C /* WelcomeView.swift in Sources */,
 				99E7210F29EAD8EC0005B48C /* LoginView.swift in Sources */,
+				99E7213829EAFF0D0005B48C /* LocationManager.swift in Sources */,
+				99E7214529EB15FD0005B48C /* User.swift in Sources */,
 				99E7213229EAE6E80005B48C /* AccountButtons.swift in Sources */,
 				99E7213029EAE4DC0005B48C /* Color+Extensions.swift in Sources */,
+				99E7214729EB19840005B48C /* LocationMapAnnotationView.swift in Sources */,
+				99E7214B29EB1B420005B48C /* UserLocationModel.swift in Sources */,
 				99E720FB29EAD7C90005B48C /* HelpOnTheGoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +396,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationTemporaryUsageDescriptionDictionary = "";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Need user location";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -392,6 +453,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationTemporaryUsageDescriptionDictionary = "";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Need user location";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -413,6 +477,8 @@
 				DEVELOPMENT_TEAM = XSH9P55B5U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HelpOnTheGo/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow us to access your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -442,6 +508,8 @@
 				DEVELOPMENT_TEAM = XSH9P55B5U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HelpOnTheGo/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow us to access your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
