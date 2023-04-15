@@ -19,7 +19,7 @@ struct RegisterView: View {
         NavigationView {
             VStack {
                 topBar
-                
+
                 Text("Welcome!")
                     .foregroundColor(.backgroundColor)
                     .font(.system(size: 32, weight: .bold, design: .default))
@@ -28,10 +28,9 @@ struct RegisterView: View {
                 CustomAuthTextField(placeholder: "email", isSecureTxtField: false, text: $email)
                 CustomAuthTextField(placeholder: "password", isSecureTxtField: true, text: $password)
 
-                Spacer(minLength: 0)
-
                 loginButton
 
+                Spacer()
                 
             }
             .navigationTitle("")
@@ -59,26 +58,9 @@ struct RegisterView: View {
     }
 
     @ViewBuilder private var loginButton: some View {
-        if isAuthenticated {
-            VStack {
-                NavigationLink {
-                    MainView()
-                } label: {
-                    Capsule()
-                        .foregroundColor(.backgroundColor)
-                        .frame(width: 250, height: 50, alignment: .center)
-                        .overlay {
-                            Text("Login")
-                                .foregroundColor(.white)
-                                .fontWeight(.semibold)
-                        }
-                }
-
-
-            }.padding()
-        } else {
+        VStack {
             Button {
-                Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, error in
                     guard error == nil else {
                         print(error)
                         return
@@ -90,16 +72,17 @@ struct RegisterView: View {
                 }
             } label: {
                 Capsule()
-                    .stroke(lineWidth: 0.3)
+                    //.stroke(lineWidth: 0.3)
                     .foregroundColor(.backgroundColor)
                     .frame(width: 250, height: 50, alignment: .center)
                     .overlay {
                         Text("Register")
-                            .foregroundColor(.backgroundColor)
+                            .foregroundColor(.white)
                             .fontWeight(.semibold)
                     }
             }
 
+            NavigationLink(destination: MainView().toolbar(.hidden), isActive: $isAuthenticated) { EmptyView() }
         }
     }
 }

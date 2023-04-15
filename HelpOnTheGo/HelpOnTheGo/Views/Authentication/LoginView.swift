@@ -6,17 +6,19 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct LoginView: View {
-    @State var username: String = ""
+    @State var email: String = ""
     @State var password: String = ""
+    @State var isLoggedin: Bool = false
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         NavigationView {
             VStack {
                 topBar
-                CustomAuthTextField(placeholder: "To get started enter your username", isSecureTxtField: false, text: $username)
+                CustomAuthTextField(placeholder: "To get started enter your email", isSecureTxtField: false, text: $email)
                 CustomAuthTextField(placeholder: "password", isSecureTxtField: true, text: $password)
                 
                 loginButton
@@ -49,8 +51,17 @@ struct LoginView: View {
 
     private var loginButton: some View {
         VStack {
-            NavigationLink {
-                MainView()
+            Button {
+                if !email.isEmpty, !password.isEmpty {
+                    FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, error in
+                        guard error == nil else {
+                            print(error?.localizedDescription)
+                            return
+                        }
+
+                        print("Logged in, \(result)")
+                    }
+                }
             } label: {
                 Capsule()
                     .foregroundColor(.backgroundColor)
@@ -62,7 +73,7 @@ struct LoginView: View {
                     }
             }
 
-
+            NavigationLink(destination: MainView(), isActive: $isLoggedin) { EmptyView() }
         }.padding()
     }
 }
