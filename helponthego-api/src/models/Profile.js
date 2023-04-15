@@ -15,10 +15,6 @@ const ProfileSchema = new mongoose.Schema({
 	location: {
 		type: String,
 	},
-	avatar: {
-		type: String,
-		default: '',
-	},
 	userType: {
 		type: String,
 		required: true,
