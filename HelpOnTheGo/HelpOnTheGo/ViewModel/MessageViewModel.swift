@@ -7,11 +7,6 @@
 
 import Foundation
 
-struct ChatUser {
-    let uid: String
-    let email: String
-}
-
 class MessageViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var chatUser: ChatUser?
@@ -35,11 +30,7 @@ class MessageViewModel: ObservableObject {
                 return
             }
 
-            // self.errorMessage = "Data: \(data)"
-
-            let uid = data["uid"] as? String ?? ""
-            let email = data["email"] as? String ?? ""
-            self.chatUser = ChatUser(uid: uid, email: email)
+            self.chatUser = .init(data: data)
         }
     }
 }

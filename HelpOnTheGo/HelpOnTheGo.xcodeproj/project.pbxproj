@@ -42,6 +42,7 @@
 		99E7215E29EB4D500005B48C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 99E7215D29EB4D500005B48C /* FirebaseMessaging */; };
 		99E7216029EB4D500005B48C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 99E7215F29EB4D500005B48C /* FirebaseStorage */; };
 		99E7216329EB58800005B48C /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7216229EB58800005B48C /* FirebaseManager.swift */; };
+		99E7216529EB68B90005B48C /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7216429EB68B90005B48C /* ChatUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		99E7215029EB3F120005B48C /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		99E7215229EB45240005B48C /* MessagePersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePersonView.swift; sourceTree = "<group>"; };
 		99E7216229EB58800005B48C /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		99E7216429EB68B90005B48C /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 				99E7214429EB15FD0005B48C /* User.swift */,
 				99E7214A29EB1B420005B48C /* UserLocationModel.swift */,
 				99E7214E29EB3E3B0005B48C /* Message.swift */,
+				99E7216429EB68B90005B48C /* ChatUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				99E7211B29EADBD50005B48C /* MessageListView.swift in Sources */,
 				99E7214229EB15DA0005B48C /* LocationPreviewView.swift in Sources */,
 				99E7211229EAD90C0005B48C /* MainView.swift in Sources */,
+				99E7216529EB68B90005B48C /* ChatUser.swift in Sources */,
 				99E7215129EB3F120005B48C /* MessageViewModel.swift in Sources */,
 				99E7210D29EAD8E20005B48C /* RegisterView.swift in Sources */,
 				99E7214D29EB3BD20005B48C /* MessageCell.swift in Sources */,
