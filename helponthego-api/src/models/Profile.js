@@ -36,7 +36,7 @@ const ProfileSchema = new mongoose.Schema({
 				type: String,
 				default: '',
 			},
-			reviewer: {
+			reviewID: {
 				type: mongoose.Schema.Types.ObjectId,
 				ref: 'user',
 			},
@@ -51,6 +51,10 @@ const ProfileSchema = new mongoose.Schema({
 			type: String,
 			default: '',
 		},
+	},
+	avatar: {
+		type: Buffer,
+		default: null,
 	},
 });
 
