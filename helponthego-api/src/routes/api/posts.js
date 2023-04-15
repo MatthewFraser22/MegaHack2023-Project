@@ -9,7 +9,7 @@ const { restart } = require('nodemon');
 
 // @route   POST api/posts
 // @desc    Create a post
-// @access  Private ; private because you have to be logged in to create a post
+// @access  Private
 
 router.post(
 	'/',
@@ -92,7 +92,7 @@ router.delete('/:id', auth, async (req, res) => {
 		}
 
 		if (post.user.toString() != req.user.id) {
-			return res.status(401).json({ msg: 'User not authorized' }); //401 status means not authorized
+			return res.status(401).json({ msg: 'User not authorized' });
 		}
 
 		await Post.deleteOne({ _id: req.params.id });

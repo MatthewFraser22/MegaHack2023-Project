@@ -166,7 +166,7 @@ router.get('/user/:user_id', async (req, res) => {
 
 // @route   PUT api/profile/reviews
 // @desc    PUT profile review
-// @access  Public
+// @access  Private
 
 router.put(
 	'/:user_id/reviews',
@@ -180,14 +180,13 @@ router.put(
 		const { rating, review } = req.body;
 
 		const newReview = {
-			//create object with data that user submits
 			rating,
 			review,
 		};
 		try {
-			const profile = await Profile.findOne({ user: req.params.user_id }); //we get req.user.id from token
+			const profile = await Profile.findOne({ user: req.params.user_id });
 
-			profile.reviews.unshift(newReview); //profile.experience is an array;unshift same as push but it pushes to the beginning rather than the end. we want most recent will be first
+			profile.reviews.unshift(newReview);
 
 			await profile.save();
 
