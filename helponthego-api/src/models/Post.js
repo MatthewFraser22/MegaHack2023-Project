@@ -17,7 +17,7 @@ const PostSchema = new mongoose.Schema({
 		type: String,
 	},
 	avatar: {
-		type: String,
+		type: Buffer,
 	},
 	date: {
 		type: Date,
