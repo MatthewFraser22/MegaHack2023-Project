@@ -11,6 +11,7 @@ struct MessageListView: View {
     var messages: [Message] // load from db
     @State var selectedMessage: Message? = nil
     @State var toggleMessageChat: Bool = false
+    @State var shouldShowNewMessage: Bool = false
     @ObservedObject private var vm = MessageViewModel()
 
     var body: some View {
@@ -39,11 +40,17 @@ struct MessageListView: View {
                         }
 
                         Spacer(minLength: 0)
-            
+
                         Image(systemName: "message")
                             .resizable()
                             .frame(width: 25, height: 25)
                             .foregroundColor(.blue)
+                            .onTapGesture {
+                                self.shouldShowNewMessage.toggle()
+                            }
+                            .fullScreenCover(isPresented: $shouldShowNewMessage, onDismiss: nil) {
+                                NewMessageView()
+                            }
                         
                     }.padding()
                 }

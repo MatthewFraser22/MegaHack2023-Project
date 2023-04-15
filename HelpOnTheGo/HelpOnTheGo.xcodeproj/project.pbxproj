@@ -43,6 +43,7 @@
 		99E7216029EB4D500005B48C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 99E7215F29EB4D500005B48C /* FirebaseStorage */; };
 		99E7216329EB58800005B48C /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7216229EB58800005B48C /* FirebaseManager.swift */; };
 		99E7216529EB68B90005B48C /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7216429EB68B90005B48C /* ChatUser.swift */; };
+		99E7216729EB6BB10005B48C /* NewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E7216629EB6BB10005B48C /* NewMessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		99E7215229EB45240005B48C /* MessagePersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePersonView.swift; sourceTree = "<group>"; };
 		99E7216229EB58800005B48C /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		99E7216429EB68B90005B48C /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		99E7216629EB6BB10005B48C /* NewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 				99E7211A29EADBD50005B48C /* MessageListView.swift */,
 				99E7214C29EB3BD20005B48C /* MessageCell.swift */,
 				99E7215229EB45240005B48C /* MessagePersonView.swift */,
+				99E7216629EB6BB10005B48C /* NewMessageView.swift */,
 			);
 			path = Messaging;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				99E720FD29EAD7C90005B48C /* ContentView.swift in Sources */,
 				99E7215329EB45240005B48C /* MessagePersonView.swift in Sources */,
 				99E7213D29EB12DF0005B48C /* MKCoordinateRegion+Extensions.swift in Sources */,
+				99E7216729EB6BB10005B48C /* NewMessageView.swift in Sources */,
 				99E7211B29EADBD50005B48C /* MessageListView.swift in Sources */,
 				99E7214229EB15DA0005B48C /* LocationPreviewView.swift in Sources */,
 				99E7211229EAD90C0005B48C /* MainView.swift in Sources */,
