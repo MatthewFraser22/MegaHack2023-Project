@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
 // @access  Private
 router.get('/me', auth, async (req, res) => {
 	try {
-		const profile = await Profile.findOne({ user: req.user.id }).populate(
+		const profile = await Profile.findOne({ user: req.user_id }).populate(
 			'user',
 			['name', 'avatar']
 		);
@@ -103,7 +103,7 @@ router.post(
 			req.body;
 
 		const profileFields = {};
-		profileFields.user = req.user.id;
+		profileFields.user = req.user_id;
 
 		if (location) profileFields.location = location;
 		if (bio) profileFields.bio = bio;
@@ -118,13 +118,13 @@ router.post(
 		if (email) profileFields.contact.email = email;
 
 		try {
-			let profile = await Profile.findOne({ user: req.user.id }); //look for profile
+			let profile = await Profile.findOne({ user: req.user_id }); //look for profile
 
 			if (profile) {
 				// if profile exists we just update it
 				//update profile
 				profile = await Profile.findOneAndUpdate(
-					{ user: req.user.id },
+					{ user: req.user_id },
 					{ $set: profileFields },
 					{ new: true }
 				); //update profilefields
@@ -169,7 +169,7 @@ router.get('/user/:user_id', async (req, res) => {
 // @access  Private
 
 router.put(
-	'/:user_id/reviews',
+	'/reviews/:user_id',
 	[auth, [check('rating', 'Rating is required').not().isEmpty()]],
 	async (req, res) => {
 		const errors = validationResult(req);
@@ -204,9 +204,9 @@ router.put(
 router.delete('/', auth, async (req, res) => {
 	try {
 		await Promise.all([
-			Profile.findOneAndRemove({ user: req.user.id }),
+			Profile.findOneAndRemove({ user: req.user_id }),
 
-			User.findOneAndRemove({ _id: req.user.id }),
+			User.findOneAndRemove({ _id: req.user_id }),
 		]);
 
 		res.json({ msg: 'User deleted' });

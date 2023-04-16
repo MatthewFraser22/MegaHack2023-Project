@@ -8,11 +8,11 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 // @route  Get api/auth
-// @desc    Get user by token
+// @desc    Get user by id
 // @access  Private
 router.get('/', auth, async (req, res) => {
 	try {
-		const user = await User.findById(req.user.id).select('-password');
+		const user = await User.findById(req.user_id).select('-password');
 		res.json(user);
 	} catch (err) {
 		console.error(err.message);
@@ -55,23 +55,14 @@ router.post(
 				},
 			};
 
-			jwt.sign(
-				payload,
-				process.env.jwtSecret,
-				{ expiresIn: 360000 },
-				(err, token) => {
-					if (err) throw err;
-					// Exclude password from the user object
-					const userWithoutPassword = {
-						_id: user._id,
-						name: user.name,
-						email: user.email,
-						date: user.date,
-					};
-					// Send the token and user object in the response
-					res.json({ token, user: userWithoutPassword });
-				}
-			);
+			const userWithoutPassword = {
+				_id: user._id,
+				name: user.name,
+				email: user.email,
+				date: user.date,
+			};
+			// Send the token and user object in the response
+			res.json({ user: userWithoutPassword });
 		} catch (err) {
 			console.error(err.message);
 			res.status(500).send('Server error');
