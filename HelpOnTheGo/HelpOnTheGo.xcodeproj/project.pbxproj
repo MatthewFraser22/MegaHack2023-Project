@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99D0129929EBB0EF00073838 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D0129829EBB0EF00073838 /* HTTPMethod.swift */; };
+		99D0129D29EBB12000073838 /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D0129C29EBB12000073838 /* HTTPStatusCodes.swift */; };
+		99D012A129EBB9C100073838 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012A029EBB9C100073838 /* NetworkServices.swift */; };
+		99D012A329EBC26400073838 /* PostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012A229EBC26400073838 /* PostViewCell.swift */; };
+		99D012A529EBCB3D00073838 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012A429EBCB3D00073838 /* CreatePostView.swift */; };
+		99D012A729EBD37200073838 /* MultilineTextFeildRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012A629EBD37200073838 /* MultilineTextFeildRepresentable.swift */; };
+		99D012A929EBE6C900073838 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012A829EBE6C900073838 /* PostItem.swift */; };
+		99D012AB29EBE6DF00073838 /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012AA29EBE6DF00073838 /* CreatePostViewModel.swift */; };
+		99D012AD29EBE71D00073838 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012AC29EBE71D00073838 /* AuthViewModel.swift */; };
+		99D012AF29EBE79400073838 /* MessagePersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012AE29EBE79400073838 /* MessagePersonViewModel.swift */; };
+		99D012B129EBE7B400073838 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012B029EBE7B400073838 /* ChatMessage.swift */; };
+		99D012B329EBE7CA00073838 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012B229EBE7CA00073838 /* FirebaseConstants.swift */; };
+		99D012B529EBE89A00073838 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012B429EBE89A00073838 /* PostModel.swift */; };
 		99E720FB29EAD7C90005B48C /* HelpOnTheGoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E720FA29EAD7C90005B48C /* HelpOnTheGoApp.swift */; };
 		99E720FD29EAD7C90005B48C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E720FC29EAD7C90005B48C /* ContentView.swift */; };
 		99E720FF29EAD7CB0005B48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99E720FE29EAD7CB0005B48C /* Assets.xcassets */; };
@@ -47,6 +60,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		99D0129829EBB0EF00073838 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		99D0129C29EBB12000073838 /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
+		99D012A029EBB9C100073838 /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
+		99D012A229EBC26400073838 /* PostViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewCell.swift; sourceTree = "<group>"; };
+		99D012A429EBCB3D00073838 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
+		99D012A629EBD37200073838 /* MultilineTextFeildRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextFeildRepresentable.swift; sourceTree = "<group>"; };
+		99D012A829EBE6C900073838 /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
+		99D012AA29EBE6DF00073838 /* CreatePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewModel.swift; sourceTree = "<group>"; };
+		99D012AC29EBE71D00073838 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		99D012AE29EBE79400073838 /* MessagePersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePersonViewModel.swift; sourceTree = "<group>"; };
+		99D012B029EBE7B400073838 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		99D012B229EBE7CA00073838 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
+		99D012B429EBE89A00073838 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		99E720F729EAD7C90005B48C /* HelpOnTheGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelpOnTheGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99E720FA29EAD7C90005B48C /* HelpOnTheGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOnTheGoApp.swift; sourceTree = "<group>"; };
 		99E720FC29EAD7C90005B48C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +125,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		99D0129529EBB07700073838 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				99D0129829EBB0EF00073838 /* HTTPMethod.swift */,
+				99D0129C29EBB12000073838 /* HTTPStatusCodes.swift */,
+				99D012A029EBB9C100073838 /* NetworkServices.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		99E720EE29EAD7C90005B48C = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +155,7 @@
 		99E720F929EAD7C90005B48C /* HelpOnTheGo */ = {
 			isa = PBXGroup;
 			children = (
+				99D0129529EBB07700073838 /* Network */,
 				99E7213B29EB0B690005B48C /* Info.plist */,
 				99E7216129EB58740005B48C /* Managers */,
 				99E7214329EB15F20005B48C /* Models */,
@@ -128,6 +165,7 @@
 				99E7210829EAD89C0005B48C /* Views */,
 				99E720FE29EAD7CB0005B48C /* Assets.xcassets */,
 				99E7210029EAD7CB0005B48C /* Preview Content */,
+				99D012A629EBD37200073838 /* MultilineTextFeildRepresentable.swift */,
 			);
 			path = HelpOnTheGo;
 			sourceTree = "<group>";
@@ -178,6 +216,8 @@
 			isa = PBXGroup;
 			children = (
 				99E7211429EADA2B0005B48C /* PostView.swift */,
+				99D012A229EBC26400073838 /* PostViewCell.swift */,
+				99D012A429EBCB3D00073838 /* CreatePostView.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -243,6 +283,9 @@
 				99E7213F29EB15550005B48C /* UserViewModel.swift */,
 				99E7214829EB1A950005B48C /* LocationViewModel.swift */,
 				99E7215029EB3F120005B48C /* MessageViewModel.swift */,
+				99D012AA29EBE6DF00073838 /* CreatePostViewModel.swift */,
+				99D012AC29EBE71D00073838 /* AuthViewModel.swift */,
+				99D012AE29EBE79400073838 /* MessagePersonViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -254,6 +297,10 @@
 				99E7214A29EB1B420005B48C /* UserLocationModel.swift */,
 				99E7214E29EB3E3B0005B48C /* Message.swift */,
 				99E7216429EB68B90005B48C /* ChatUser.swift */,
+				99D012A829EBE6C900073838 /* PostItem.swift */,
+				99D012B029EBE7B400073838 /* ChatMessage.swift */,
+				99D012B229EBE7CA00073838 /* FirebaseConstants.swift */,
+				99D012B429EBE89A00073838 /* PostModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -350,32 +397,45 @@
 			files = (
 				99E7216329EB58800005B48C /* FirebaseManager.swift in Sources */,
 				99E7211529EADA2B0005B48C /* PostView.swift in Sources */,
+				99D0129D29EBB12000073838 /* HTTPStatusCodes.swift in Sources */,
 				99E7211929EADBC00005B48C /* MapView.swift in Sources */,
+				99D012A329EBC26400073838 /* PostViewCell.swift in Sources */,
 				99E7211E29EADBF80005B48C /* ProfileView.swift in Sources */,
 				99E7214929EB1A950005B48C /* LocationViewModel.swift in Sources */,
+				99D012A929EBE6C900073838 /* PostItem.swift in Sources */,
+				99D012B329EBE7CA00073838 /* FirebaseConstants.swift in Sources */,
 				99E7213529EAF9AE0005B48C /* LoginTextField.swift in Sources */,
 				99E720FD29EAD7C90005B48C /* ContentView.swift in Sources */,
+				99D0129929EBB0EF00073838 /* HTTPMethod.swift in Sources */,
 				99E7215329EB45240005B48C /* MessagePersonView.swift in Sources */,
 				99E7213D29EB12DF0005B48C /* MKCoordinateRegion+Extensions.swift in Sources */,
 				99E7216729EB6BB10005B48C /* NewMessageView.swift in Sources */,
 				99E7211B29EADBD50005B48C /* MessageListView.swift in Sources */,
+				99D012B129EBE7B400073838 /* ChatMessage.swift in Sources */,
 				99E7214229EB15DA0005B48C /* LocationPreviewView.swift in Sources */,
 				99E7211229EAD90C0005B48C /* MainView.swift in Sources */,
+				99D012AF29EBE79400073838 /* MessagePersonViewModel.swift in Sources */,
+				99D012A729EBD37200073838 /* MultilineTextFeildRepresentable.swift in Sources */,
 				99E7216529EB68B90005B48C /* ChatUser.swift in Sources */,
 				99E7215129EB3F120005B48C /* MessageViewModel.swift in Sources */,
 				99E7210D29EAD8E20005B48C /* RegisterView.swift in Sources */,
 				99E7214D29EB3BD20005B48C /* MessageCell.swift in Sources */,
 				99E7214029EB15550005B48C /* UserViewModel.swift in Sources */,
 				99E7210B29EAD8CA0005B48C /* WelcomeView.swift in Sources */,
+				99D012A129EBB9C100073838 /* NetworkServices.swift in Sources */,
 				99E7210F29EAD8EC0005B48C /* LoginView.swift in Sources */,
+				99D012AB29EBE6DF00073838 /* CreatePostViewModel.swift in Sources */,
 				99E7213829EAFF0D0005B48C /* LocationManager.swift in Sources */,
 				99E7214529EB15FD0005B48C /* User.swift in Sources */,
+				99D012B529EBE89A00073838 /* PostModel.swift in Sources */,
 				99E7214F29EB3E3B0005B48C /* Message.swift in Sources */,
 				99E7213229EAE6E80005B48C /* AccountButtons.swift in Sources */,
 				99E7213029EAE4DC0005B48C /* Color+Extensions.swift in Sources */,
 				99E7214729EB19840005B48C /* LocationMapAnnotationView.swift in Sources */,
 				99E7214B29EB1B420005B48C /* UserLocationModel.swift in Sources */,
 				99E720FB29EAD7C90005B48C /* HelpOnTheGoApp.swift in Sources */,
+				99D012A529EBCB3D00073838 /* CreatePostView.swift in Sources */,
+				99D012AD29EBE71D00073838 /* AuthViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

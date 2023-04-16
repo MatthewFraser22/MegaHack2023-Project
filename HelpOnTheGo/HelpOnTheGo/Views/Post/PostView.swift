@@ -8,8 +8,49 @@
 import SwiftUI
 
 struct PostView: View {
+    @State var showCreatePost: Bool = false
+    @ObservedObject var authViewModel = AuthViewModel.shared
+    @ObservedObject var createPostVM = CreatePostViewModel.shared
+
     var body: some View {
-        Text("Post")
+        ZStack {
+            ScrollView {
+                ForEach(createPostVM.userPosts) { post in
+                    Text("POST " + post.user)
+                    
+                    Divider()
+                }
+            }
+
+            createPostView
+        }
+        .fullScreenCover(isPresented: $showCreatePost) {
+            CreatePostView()
+        }
+    }
+
+    private var createPostView: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+
+                Button(action: {
+                    self.showCreatePost.toggle()
+                }, label: {
+                    Image(systemName: "square.and.pencil")
+                        .renderingMode(.template)
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .padding()
+                        .background(Color.backgroundColor)
+                        .foregroundColor(Color.white)
+                        .clipShape(Circle())
+                    
+            })
+            }
+        }
+        .padding(.trailing, 20)
     }
 }
 

@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct User: Decodable {
+struct ApiResponse: Decodable {
+    let token: String
+}
+
+struct User: Codable {
     let name: String
-    let image: String?
-    let userstate: String
+    let email: String
+    let authToken: String
 }

@@ -38,13 +38,12 @@ struct LocationPreviewView: View {
 extension LocationPreviewView {
     private var imageSection: some View {
         ZStack {
-            if let imageName = user?.image {
-                Image(imageName)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 100, height: 100)
-                    .cornerRadius(10)
-            }
+            Image(systemName: "person.fill")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 100, height: 100)
+                .cornerRadius(10)
+            
         }
         .padding(6)
         .background(Color.white)

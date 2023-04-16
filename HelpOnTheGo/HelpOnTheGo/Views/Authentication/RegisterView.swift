@@ -14,6 +14,7 @@ struct RegisterView: View {
     @State var password: String = ""
     @Environment(\.presentationMode) var presentationMode
     @State var isAuthenticated: Bool = false
+    @ObservedObject private var vm = AuthViewModel.shared
 
     var body: some View {
         NavigationView {
@@ -28,7 +29,7 @@ struct RegisterView: View {
                 CustomAuthTextField(placeholder: "email", isSecureTxtField: false, text: $email)
                 CustomAuthTextField(placeholder: "password", isSecureTxtField: true, text: $password)
 
-                loginButton
+                registerButton
 
                 Spacer()
                 
@@ -57,7 +58,7 @@ struct RegisterView: View {
         .padding()
     }
 
-    @ViewBuilder private var loginButton: some View {
+    @ViewBuilder private var registerButton: some View {
         VStack {
             Button {
                 FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, error in
@@ -66,9 +67,14 @@ struct RegisterView: View {
                         return
                     }
 
+                    vm.create(email: email, password: password)
+
                     withAnimation {
                         isAuthenticated = true
                     }
+
+                    storeUserDataToFirestore()
+
                 }
             } label: {
                 Capsule()
@@ -84,6 +90,20 @@ struct RegisterView: View {
 
             NavigationLink(destination: MainView().toolbar(.hidden), isActive: $isAuthenticated) { EmptyView() }
         }
+    }
+
+    private func storeUserDataToFirestore() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+
+        let userData = ["email" : email, "uid" : uid]
+        FirebaseManager.shared.firestore.collection("users")
+            .document(uid)
+            .setData(userData) { error in
+                if let err = error {
+                    print(err)
+                    return
+                }
+            }
     }
 }
 

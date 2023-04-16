@@ -39,6 +39,6 @@ struct MessageCell: View {
 
 struct MessageCell_Previews: PreviewProvider {
     static var previews: some View {
-        MessageCell(message: Message(sender: "Evan", body: "FUCK YOU"))
+        MessageCell(message: Message(sender: "Evan", body: "..."))
     }
 }

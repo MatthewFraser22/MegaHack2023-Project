@@ -13,6 +13,7 @@ struct LoginView: View {
     @State var password: String = ""
     @State var isLoggedin: Bool = false
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject private var authViewModel = AuthViewModel.shared
 
     var body: some View {
         NavigationView {
@@ -58,8 +59,10 @@ struct LoginView: View {
                             print(error?.localizedDescription)
                             return
                         }
+
                         self.isLoggedin.toggle()
-                        print("Logged in, \(result?.user.uid)")
+
+                        authViewModel.login(email: email, password: password)
                         storeUserDataToFirestore()
                     }
                 }
