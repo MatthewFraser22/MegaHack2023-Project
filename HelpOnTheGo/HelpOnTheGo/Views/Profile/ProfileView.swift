@@ -61,35 +61,41 @@ struct ProfileView: View {
     @State private var numberOfReviewsToShow = 10
     
     var body: some View {
+        
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                HStack {
-                    Spacer()
-                    profileImage
-                    Spacer()
-                }
-                nameSection
+            
+            ZStack{
                 
-                userTypeSection
-                locationSection
-                
-                VStack(spacing: 5) {
-                    Divider().background(Color.gray)
+                VStack(alignment: .leading, spacing: 20) {
+                    
                     HStack {
-                        helpedEvents
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                        
-                        Divider()
-                        
-                        ratingSection
-                            .frame(minWidth: 0, maxWidth: .infinity)
+                        Spacer()
+                        profileImage
+                        Spacer()
                     }
-                    Divider().background(Color.gray)
+                    nameSection
+                    
+                    userTypeSection
+                    locationSection
+                    
+                    VStack(spacing: 5) {
+                        Divider().background(Color.gray)
+                        HStack {
+                            helpedEvents
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                            
+                            Divider()
+                            
+                            ratingSection
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                        }
+                        Divider().background(Color.gray)
+                    }
+                    bioSection
+                    
+                    reviewsSection
+                    Spacer()
                 }
-                bioSection
-                
-                reviewsSection
-                Spacer()
             }
             .padding()
         }

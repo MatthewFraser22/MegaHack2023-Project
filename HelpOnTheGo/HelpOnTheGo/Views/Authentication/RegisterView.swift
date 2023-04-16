@@ -47,7 +47,7 @@ struct RegisterView: View {
             }
             .padding(.trailing, 105)
 
-            Image(systemName: "person.circle")
+            Image("logo")
                 .resizable()
                 .frame(width: 30, height: 30, alignment: .center)
                 .foregroundColor(.blue)
