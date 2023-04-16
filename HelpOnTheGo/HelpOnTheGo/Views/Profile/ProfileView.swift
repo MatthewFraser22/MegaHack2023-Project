@@ -71,11 +71,18 @@ struct ProfileView: View {
                 nameSection
                 locationSection
                 
-                HStack{
-                    helpedEvents
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                    ratingSection
-                        .frame(minWidth: 0, maxWidth: .infinity)
+                VStack(spacing: 5) {
+                    Divider().background(Color.gray)
+                    HStack {
+                        helpedEvents
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                        
+                        Divider()
+                        
+                        ratingSection
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                    }
+                    Divider().background(Color.gray)
                 }
                 bioSection
                 
@@ -103,16 +110,11 @@ struct ProfileView: View {
     
     var nameSection: some View {
         Text("\(name)")
-            .font(.custom("Futura-Heavy", size: 28)) // Set custom font and size
+            .font(.custom("Futura-Heavy", size: 36)) // Set custom font and size
             .foregroundColor(.black) // Set text color
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
-            .background(
-                Text("\(name)")
-                    .font(.custom("Futura-Heavy", size: 28))
-                    .foregroundColor(.black)
-                
-            )
+        
     }
     
     var bioSection: some View {
@@ -127,11 +129,21 @@ struct ProfileView: View {
     var helpedEvents: some View {
         VStack{
             Text("\(completed)")
-                .font(.title2)
-                .fontWeight(.bold)
+                .font(.system(size: 28, weight: .semibold))
+            
             Text("Helped Events")
-                .font(.title2)
-                .fontWeight(.bold)
+                .font(.system(size: 15, weight: .light))
+                .foregroundColor(.gray)
+        }
+    }
+    var ratingSection: some View {
+        VStack{
+            Text("\(String(format: "%.1f", rating))")
+                .font(.system(size: 28, weight: .semibold))
+            
+            Text("Rating")
+                .font(.system(size: 15, weight: .light))
+                .foregroundColor(.gray)
         }
     }
     
@@ -156,17 +168,7 @@ struct ProfileView: View {
             .fontWeight(.bold)
     }
     
-    var ratingSection: some View {
-        VStack{
-            
-            Text("\(String(format: "%.1f", rating))")
-                .font(.title2)
-                .fontWeight(.bold)
-            Text("Rating")
-                .font(.title2)
-                .fontWeight(.bold)
-        }
-    }
+    
     
     var contactSection: some View {
         VStack(alignment: .leading, spacing: 5) {
