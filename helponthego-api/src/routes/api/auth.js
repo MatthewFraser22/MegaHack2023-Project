@@ -61,7 +61,15 @@ router.post(
 				{ expiresIn: 360000 },
 				(err, token) => {
 					if (err) throw err;
-					res.json({ token });
+					// Exclude password from the user object
+					const userWithoutPassword = {
+						_id: user._id,
+						name: user.name,
+						email: user.email,
+						date: user.date,
+					};
+					// Send the token and user object in the response
+					res.json({ token, user: userWithoutPassword });
 				}
 			);
 		} catch (err) {
