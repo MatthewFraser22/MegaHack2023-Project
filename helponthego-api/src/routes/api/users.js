@@ -63,15 +63,14 @@ router.post(
 				},
 			};
 
-			jwt.sign(
-				payload,
-				process.env.jwtSecret,
-				{ expiresIn: 360000 },
-				(err, token) => {
-					if (err) throw err;
-					res.json({ token });
-				}
-			);
+			const userWithoutPassword = {
+				_id: user._id,
+				name: user.name,
+				email: user.email,
+				date: user.date,
+			};
+
+			res.json({ user: userWithoutPassword });
 		} catch (err) {
 			console.error(err.message);
 			res.status(500).send('Server error');
