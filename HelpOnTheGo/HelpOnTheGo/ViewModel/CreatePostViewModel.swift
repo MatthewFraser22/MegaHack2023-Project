@@ -6,17 +6,16 @@
 //
 
 import Foundation
+import SwiftUI
 
 class CreatePostViewModel: ObservableObject {
     @Published var userPosts = [PostModel]()
     static let shared = CreatePostViewModel()
 
-    init() {
-        getAllPost()
-    }
+    init() {}
 
-    func getAllPost() {
-        NetworkServices.getAllPosts { result in
+    static func getAllPost(userId: String) {
+        NetworkServices.getAllPosts(userId: userId) { result in
             switch result {
             case .success(let success):
                 print("SUCCESS GOT ALL POSTS")
@@ -28,7 +27,7 @@ class CreatePostViewModel: ObservableObject {
         }
     }
 
-    func uploadPost(postItem: PostItem) {
+    func uploadPost(postItem: PostItem, token: String) {
         NetworkServices.uploadPost(postItem: postItem) { result in
             switch result {
             case .success(let data):
@@ -42,6 +41,7 @@ class CreatePostViewModel: ObservableObject {
                 }
 
             case .failure(let error):
+                print("FAILURE TO DECODE RESPONSE \(error.localizedDescription)")
                 print(error.localizedDescription)
             }
         }

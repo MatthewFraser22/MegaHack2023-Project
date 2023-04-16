@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
 
 class NetworkServices {
 
     init() {}
-    
-    static func getAllPosts(completion: @escaping (_ result: Result<[PostModel], AuthError>) -> Void) {
+
+    static func getAllPosts(
+        userId: String,
+        completion: @escaping (_ result: Result<[PostModel], AuthError>) -> Void) {
         let url = URL(string: "http://localhost:5001/api/posts")
 
         guard let url = url else {
@@ -20,10 +23,12 @@ class NetworkServices {
         }
 
         var request = URLRequest(url: url)
-        
+
         request.httpMethod = HTTPMethod.get.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+       // request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
         let session = URLSession.shared
 
@@ -42,8 +47,10 @@ class NetworkServices {
 
             // set the body of the request
             do {
+                // let response = try JSONDecoder().decode([PostModel].self, from: data)
+                let dataString = String(data: data, encoding: .utf8)
+                print("Raw JSON data: \(dataString ?? "Unable to convert data to string")")
                 let response = try JSONDecoder().decode([PostModel].self, from: data)
-                
                 print("SUCCESS: \(response)")
                 //completion(.success(response))
             } catch let error {
@@ -88,8 +95,11 @@ class NetworkServices {
                 switch result {
                 case .success(let data):
                     print("TESTING: Success data uploaded")
+                    let stringData = String(data: data!, encoding: .utf8)
+                    print("JSON DATA \(stringData)")
                     completion(.success(data))
                 case .failure(let error):
+                    print("TESTING: ERROR data uploaded")
                     completion(.failure(.invalidCredentials))
                 }
             }
@@ -136,6 +146,8 @@ class NetworkServices {
         request.httpMethod = httpMethod.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        //request.addValue("\()", forHTTPHeaderField: "Authorization")
+//        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
         let session = URLSession.shared
 
