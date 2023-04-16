@@ -50,18 +50,24 @@ class MessagePersonViewModel: ObservableObject {
             .collection("messages")
             .document(fromId)
             .collection(toId)
+            .order(by: "timestamp")
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     self.errormessage = "failed to listen for messages \(error)"
                     return
                 }
-                
-                querySnapshot?.documents.forEach({ queryDocumentSnapshot in
-                    let data = queryDocumentSnapshot.data() // contains one message block
-                    let documentId = queryDocumentSnapshot.documentID
-
-                    self.chatMessages.append(.init(documentId: documentId, data: data))
+                querySnapshot?.documentChanges.forEach({ change in
+                    if change.type == .added {
+                        let data = change.document.data()
+                        self.chatMessages.append(.init(documentId: change.document.documentID, data: data))
+                    }
                 })
+//                querySnapshot?.documents.forEach({ queryDocumentSnapshot in
+//                    let data = queryDocumentSnapshot.data() // contains one message block
+//                    let documentId = queryDocumentSnapshot.documentID
+//
+//                    self.chatMessages.append(.init(documentId: documentId, data: data))
+//                })
             }
         
     }
@@ -95,7 +101,7 @@ class MessagePersonViewModel: ObservableObject {
             .collection(fromId)
             .document()
         
-        document.setData(messageData) { error in
+        recipentMessageDocument.setData(messageData) { error in
             if let error = error {
                 print(error)
                 self.errormessage = "failed to save message to firestore \(error)"
@@ -140,20 +146,36 @@ struct MessagePersonView: View {
     private var messagesView: some View {
         ScrollView {
             ForEach(vm.chatMessages) { message in
-                HStack {
-                    Spacer()
+                VStack {
+                    if message.fromId == FirebaseManager.shared.auth.currentUser?.uid {
+                        HStack {
+                            Spacer()
 
-                    HStack {
-                        Text(message.text)
-                            .foregroundColor(.white)
+                            HStack {
+                                Text(message.text)
+                                    .foregroundColor(.white)
+                            }
+                            .padding()
+                            .background(Color.backgroundColor)
+                            .cornerRadius(8)
+                        }
+                    } else {
+                        HStack {
+                            HStack {
+                                Text(message.text)
+                                    .foregroundColor(.backgroundColor)
+                            }
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(8)
+
+                            Spacer()
+                        }
+                        
                     }
-                    .padding()
-                    .background(Color.backgroundColor)
-                    .cornerRadius(8)
                 }
                 .padding(.horizontal)
                 .padding(.top, 8)
-                
             }
 
             HStack { Spacer() }
