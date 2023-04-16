@@ -58,10 +58,9 @@ struct CreatePostView: View {
                             location: location
                         )
 
-                        vm.uploadPost(postItem: post, token: auth.authToken)
+                        vm.uploadPost(postItem: post, userId: auth.currentUser?._id ?? "0")
                         CreatePostViewModel.getAllPost(userId: auth.currentUser?._id ?? "")
                         self.presentationMode.wrappedValue.dismiss()
-                        
                     }
                     
                 } label: {

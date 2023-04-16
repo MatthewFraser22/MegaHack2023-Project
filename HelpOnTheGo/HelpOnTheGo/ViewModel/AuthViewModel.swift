@@ -45,7 +45,7 @@ class AuthViewModel: ObservableObject {
                     DispatchQueue.main.async { [self] in
 
                         self.currentUser = response.user
-                        print("1. Token: auth set = \(currentUser) \(response)")
+                        print("1. Token: auth set = \(response.user) \(response)")
                     }
                 } catch let e {
                     print("TESTING: Error decoding \(e)")

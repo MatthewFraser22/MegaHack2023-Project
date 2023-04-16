@@ -15,5 +15,6 @@ struct ApiResponse: Decodable {
 struct User: Codable {
     let name: String
     let email: String
+    let location: String
     let _id: String
 }

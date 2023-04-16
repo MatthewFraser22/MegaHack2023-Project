@@ -27,8 +27,8 @@ class CreatePostViewModel: ObservableObject {
         }
     }
 
-    func uploadPost(postItem: PostItem, token: String) {
-        NetworkServices.uploadPost(postItem: postItem) { result in
+    func uploadPost(postItem: PostItem, userId: String) {
+        NetworkServices.uploadPost(userId: userId, postItem: postItem) { result in
             switch result {
             case .success(let data):
                 do {

@@ -81,13 +81,15 @@ class NetworkServices {
                 }
             }
     }
-    
+
     static func uploadPost(
+        userId: String,
         postItem: PostItem,
         completion: @escaping (_ result: Result<Data?, AuthError>) -> Void
     ) {
 
-        makeRequest(
+        makePostRequest(
+            userId: userId,
             urlString: "http://localhost:5001/api/posts",
             httpMethod: .post,
             requestBody: ["text" : postItem.bodyText, "motive" : postItem.helpState]
@@ -146,7 +148,62 @@ class NetworkServices {
         request.httpMethod = httpMethod.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        //request.addValue("\()", forHTTPHeaderField: "Authorization")
+//        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+        let session = URLSession.shared
+
+        let task = session.dataTask(with: request) { data, response, error in
+            
+            guard error == nil else {
+                print("TESTING: error with data \(error)")
+                return
+            }
+
+            guard let data = data else {
+                print("TESTING: data missing \(data)")
+                completion(.failure(.noData))
+                return
+            }
+
+            completion(.success(data))
+
+            // set the body of the request
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] {
+                    print(json)
+                }
+            } catch let error {
+                print("TESTING: Error with serialization")
+                completion(.failure(.decodingError))
+            }
+        }
+        task.resume()
+    }
+
+    static func makePostRequest(
+        userId: String,
+        urlString: String,
+        httpMethod: HTTPMethod,
+        requestBody: [String : Any],
+        completion: @escaping (_ result: Result<Data?, NetworkError>) -> Void
+    ) {
+        let url = URL(string: urlString)
+
+        guard let url = url else { return }
+
+        var request = URLRequest(url: url)
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+        } catch let error {
+            print(error)
+        }
+
+        request.httpMethod = httpMethod.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+        request.addValue("\(userId)", forHTTPHeaderField: "user_id")
 //        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
         let session = URLSession.shared
