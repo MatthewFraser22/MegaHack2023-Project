@@ -41,7 +41,7 @@ router.post(
 
 			const post = await newPost.save();
 
-			res.json([post, user]);
+			res.json(post);
 		} catch (err) {
 			console.error(err.message);
 			res.status(500).send('Server error');
