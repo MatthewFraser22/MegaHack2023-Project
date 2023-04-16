@@ -12,6 +12,8 @@ fileprivate enum TabState: Int {
 }
 
 struct MainView: View {
+    @EnvironmentObject private var authVM: AuthViewModel
+
     var messages: [Message] = [
         Message(sender: "Matt", body: "Hey!")
     ]
@@ -26,6 +28,7 @@ struct MainView: View {
     private var tabBarView: some View {
         TabView {
             PostView()
+                .environmentObject(authVM)
                 .tabItem {
                     Image(systemName: "house")
                 }

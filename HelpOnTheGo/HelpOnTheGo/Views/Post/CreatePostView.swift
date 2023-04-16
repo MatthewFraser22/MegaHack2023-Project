@@ -10,7 +10,7 @@ import SwiftUI
 struct CreatePostView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject private var vm = CreatePostViewModel()
-    @ObservedObject private var auth = AuthViewModel()
+    @EnvironmentObject private var auth: AuthViewModel
 
     @State var location: String = ""
     @State var bodyText: String = ""
@@ -51,15 +51,16 @@ struct CreatePostView: View {
                     print("CURRENT USER = \(auth.currentUser)")
                     if let user = auth.currentUser {
                         let post = PostItem(
-                            id: auth.currentUser?.authToken ?? "",
+                            id: auth.currentUser?._id ?? "",
                             user: user,
                             bodyText: bodyText,
                             helpState: helpType.rawValue,
                             location: location
                         )
-                        
-                        print("1. uploading the post")
+
                         vm.uploadPost(postItem: post)
+                        self.presentationMode.wrappedValue.dismiss()
+                        
                     }
                     
                 } label: {

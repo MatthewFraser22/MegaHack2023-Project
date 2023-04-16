@@ -10,6 +10,7 @@ import SwiftUI
 struct WelcomeView: View {
     @State var toggleLoginView: Bool = false
     @State var toggleRegisterView: Bool = false
+    @StateObject private var authViewModel: AuthViewModel = AuthViewModel()
 
     var body: some View {
         NavigationView {
@@ -81,7 +82,10 @@ struct WelcomeView: View {
                 self.toggleRegisterView.toggle()
             }
 
-            NavigationLink(destination: RegisterView().toolbar(.hidden), isActive: $toggleRegisterView) {
+            NavigationLink(
+                destination: RegisterView()
+                    .environmentObject(authViewModel)
+                    .toolbar(.hidden), isActive: $toggleRegisterView) {
                 EmptyView()
             }
         }.padding(8)
@@ -97,7 +101,7 @@ struct WelcomeView: View {
                 self.toggleLoginView.toggle()
             }
     
-            NavigationLink(destination: LoginView().toolbar(.hidden), isActive: $toggleLoginView) {
+            NavigationLink(destination: LoginView().environmentObject(authViewModel).toolbar(.hidden), isActive: $toggleLoginView) {
                 EmptyView()
             }
         }

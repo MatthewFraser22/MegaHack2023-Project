@@ -13,7 +13,7 @@ struct LoginView: View {
     @State var password: String = ""
     @State var isLoggedin: Bool = false
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var authViewModel = AuthViewModel.shared
+    @EnvironmentObject private var authViewModel: AuthViewModel
 
     var body: some View {
         NavigationView {
@@ -77,7 +77,7 @@ struct LoginView: View {
                     }
             }
 
-            NavigationLink(destination: MainView().toolbar(.hidden), isActive: $isLoggedin) { EmptyView() }
+            NavigationLink(destination: MainView().environmentObject(authViewModel).toolbar(.hidden), isActive: $isLoggedin) { EmptyView() }
         }.padding()
     }
     

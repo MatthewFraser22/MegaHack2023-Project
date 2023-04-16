@@ -35,7 +35,7 @@ class AuthViewModel: ObservableObject {
                    let response = try JSONDecoder().decode(ApiResponse.self, from: data!)
                     DispatchQueue.main.async { [self] in
 
-                        self.currentUser = User(name: email, email: email, authToken: response.token)
+                        self.currentUser = response.user
                         print("TESTING: = \(currentUser) \(response)")
                     }
                 } catch let e {
@@ -57,7 +57,7 @@ class AuthViewModel: ObservableObject {
                    let response = try JSONDecoder().decode(ApiResponse.self, from: data!)
                     DispatchQueue.main.async { [self] in
                         
-                        self.currentUser = User(name: email, email: email, authToken: response.token)
+                        self.currentUser = response.user
                         print("CURRENT USER = \(currentUser) \(response)")
                     }
                 } catch let e {

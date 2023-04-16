@@ -14,7 +14,7 @@ struct RegisterView: View {
     @State var password: String = ""
     @Environment(\.presentationMode) var presentationMode
     @State var isAuthenticated: Bool = false
-    @ObservedObject private var vm = AuthViewModel.shared
+    @EnvironmentObject private var vm: AuthViewModel
 
     var body: some View {
         NavigationView {
@@ -88,7 +88,7 @@ struct RegisterView: View {
                     }
             }
 
-            NavigationLink(destination: MainView().toolbar(.hidden), isActive: $isAuthenticated) { EmptyView() }
+            NavigationLink(destination: MainView().environmentObject(vm).toolbar(.hidden), isActive: $isAuthenticated) { EmptyView() }
         }
     }
 

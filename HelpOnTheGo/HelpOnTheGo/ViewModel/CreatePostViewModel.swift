@@ -11,14 +11,18 @@ class CreatePostViewModel: ObservableObject {
     @Published var userPosts = [PostModel]()
     static let shared = CreatePostViewModel()
 
-    init() { }
+    init() {
+        getAllPost()
+    }
 
-    static func getAllPost() {
+    func getAllPost() {
         NetworkServices.getAllPosts { result in
             switch result {
             case .success(let success):
+                print("SUCCESS GOT ALL POSTS")
                 print(success)
             case .failure(let failure):
+                print("FAILURE NOOOOOOO")
                 print(failure)
             }
         }

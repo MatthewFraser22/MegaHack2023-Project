@@ -14,7 +14,10 @@ class NetworkServices {
     static func getAllPosts(completion: @escaping (_ result: Result<[PostModel], AuthError>) -> Void) {
         let url = URL(string: "http://localhost:5001/api/posts")
 
-        guard let url = url else { return }
+        guard let url = url else {
+            print("GET ALL POSTS: url error")
+            return
+        }
 
         var request = URLRequest(url: url)
         
@@ -27,10 +30,12 @@ class NetworkServices {
         let task = session.dataTask(with: request) { data, response, error in
             
             guard error == nil else {
+                print("GET ALL POSTS: error \(error)")
                 return
             }
 
             guard let data = data else {
+                print("GET ALL POSTS: data error \(error)")
                 completion(.failure(.custom(errorMessage: "Error getting data")))
                 return
             }
@@ -38,8 +43,11 @@ class NetworkServices {
             // set the body of the request
             do {
                 let response = try JSONDecoder().decode([PostModel].self, from: data)
-                completion(.success(response))
+                
+                print("SUCCESS: \(response)")
+                //completion(.success(response))
             } catch let error {
+                print("GET ALL POSTS: random error \(error)")
                 completion(.failure(.custom(errorMessage: error.localizedDescription)))
             }
         }
