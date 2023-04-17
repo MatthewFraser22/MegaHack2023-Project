@@ -16,9 +16,6 @@ const PostSchema = new mongoose.Schema({
 	name: {
 		type: String,
 	},
-	avatar: {
-		type: Buffer,
-	},
 	location: {
 		type: String,
 		required: true,
