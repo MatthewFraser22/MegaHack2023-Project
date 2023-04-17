@@ -15,7 +15,7 @@ enum HelpState: String, CaseIterable {
 struct PostViewCell: View {
     var user: String
     var bodyText: String
-    var helpState: HelpState
+    var helpState: String
     var location: String
 
     var body: some View {
@@ -41,7 +41,7 @@ struct PostViewCell: View {
                             Spacer()
 
                         }
-                        Text(helpState.rawValue)
+                        Text(helpState)
                             .foregroundColor(.backgroundColor)
                             .fontWeight(.heavy)
                         Text(bodyText)

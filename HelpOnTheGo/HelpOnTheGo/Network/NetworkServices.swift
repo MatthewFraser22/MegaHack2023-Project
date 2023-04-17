@@ -9,12 +9,13 @@ import Foundation
 import SwiftUI
 
 class NetworkServices {
+    
 
     init() {}
 
     static func getAllPosts(
-        userId: String,
-        completion: @escaping (_ result: Result<[PostModel], AuthError>) -> Void) {
+        completion: @escaping (_ result: Result<[PostModel], AuthError>) -> Void
+    ) {
         let url = URL(string: "http://localhost:5001/api/posts")
 
         guard let url = url else {
@@ -26,8 +27,6 @@ class NetworkServices {
         request.httpMethod = HTTPMethod.get.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-
-       // request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
         let session = URLSession.shared
 
@@ -42,13 +41,12 @@ class NetworkServices {
                 return
             }
 
-            // set the body of the request
             do {
-                // let response = try JSONDecoder().decode([PostModel].self, from: data)
-                let dataString = String(data: data, encoding: .utf8)
-                //print("Raw JSON data: \(dataString ?? "Unable to convert data to string")")
+//                let dataString = String(data: data, encoding: .utf8)
+//                print("Raw JSON data: \(dataString ?? "Unable to convert data to string")")
                 let response = try JSONDecoder().decode([PostModel].self, from: data)
-                //completion(.success(response))
+                print("Post Response \(response)")
+                completion(.success(response))
             } catch let error {
                 completion(.failure(.custom(errorMessage: error.localizedDescription)))
             }
@@ -80,12 +78,17 @@ class NetworkServices {
         postItem: PostItem,
         completion: @escaping (_ result: Result<Data?, AuthError>) -> Void
     ) {
-
         makePostRequest(
             userId: userId,
             urlString: "http://localhost:5001/api/posts",
             httpMethod: .post,
-            requestBody: ["text" : postItem.bodyText, "motive" : postItem.helpState]
+            requestBody: [
+                "text" : postItem.bodyText,
+                "motive" : postItem.helpState,
+                "name" : postItem.user.name,
+                "location" : postItem.location,
+                "user" : postItem.user._id
+            ]
         ) { result in
                 switch result {
                 case .success(let data):

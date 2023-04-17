@@ -57,7 +57,7 @@ struct MapView: View {
 
             if let user = selectedUser {
                 GeometryReader { geometry in
-                    LocationPreviewView(userLocation: $selectedUser, user: User(name: "matt", email: "TweetImage", _id: "123"))
+                    LocationPreviewView(userLocation: $selectedUser, user: User(name: "matt", email: "TweetImage", _id: "123", location: nil, date: nil))
                         .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.5)
                         .background(Color.clear)
                         .cornerRadius(10)

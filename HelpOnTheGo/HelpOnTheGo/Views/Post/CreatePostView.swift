@@ -45,10 +45,6 @@ struct CreatePostView: View {
                 Spacer()
 
                 Button {
-                    
-                    helpType = toggleHelp ? HelpState.other : HelpState.needsHelp
-
-                    print("CURRENT USER = \(auth.currentUser)")
                     if let user = auth.currentUser {
                         let post = PostItem(
                             id: auth.currentUser?._id ?? "",
@@ -58,11 +54,9 @@ struct CreatePostView: View {
                             location: location
                         )
 
-                        vm.uploadPost(postItem: post, userId: auth.currentUser?._id ?? "0")
-                        CreatePostViewModel.getAllPost(userId: auth.currentUser?._id ?? "")
+                        vm.uploadPost(postItem: post, userId: auth.currentUser?._id ?? "unknown")
                         self.presentationMode.wrappedValue.dismiss()
                     }
-                    
                 } label: {
                     Text("Post")
                         .foregroundColor(.white)

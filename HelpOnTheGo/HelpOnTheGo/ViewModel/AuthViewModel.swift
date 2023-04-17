@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 enum NetworkError: Error {
     case invalidURL
@@ -21,20 +22,12 @@ enum AuthError: Error {
 
 class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
-    @Published var authToken: String = ""
+    @ObservedObject var postVM = CreatePostViewModel.shared
 
     static let shared = AuthViewModel()
     private var cancellable: Set<AnyCancellable> = []
 
-    init() {
-        print("1. TOKEN auth \(authToken)")
-        $authToken
-            .receive(on: RunLoop.main)
-            .sink { _ in
-                print("Set the token? \(self.authToken)")
-                CreatePostViewModel.getAllPost(userId: self.currentUser?._id ?? "0")
-            }.store(in: &cancellable)
-    }
+    init() { postVM.getAllPost() }
 
     func login(
         email: String,

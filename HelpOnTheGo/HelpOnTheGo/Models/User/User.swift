@@ -16,4 +16,6 @@ struct User: Codable {
     let name: String
     let email: String
     let _id: String
+    let location: String?
+    let date: String?
 }

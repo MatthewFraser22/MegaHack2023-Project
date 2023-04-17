@@ -20,7 +20,7 @@ import Foundation
 struct PostModel: Codable, Identifiable {
     let id, user, motive, text: String
     let name: String
-    let avatar: Avatar
+    let avatar: Avatar?
     let location, date: String
     let v: Int
 
