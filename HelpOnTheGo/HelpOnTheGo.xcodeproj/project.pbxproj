@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99231E1129EDF440003A8B8D /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99231E1029EDF440003A8B8D /* CheckmarkView.swift */; };
 		99D0129929EBB0EF00073838 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D0129829EBB0EF00073838 /* HTTPMethod.swift */; };
 		99D0129D29EBB12000073838 /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D0129C29EBB12000073838 /* HTTPStatusCodes.swift */; };
 		99D012A129EBB9C100073838 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D012A029EBB9C100073838 /* NetworkServices.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		99231E1029EDF440003A8B8D /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
 		99D0129829EBB0EF00073838 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		99D0129C29EBB12000073838 /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		99D012A029EBB9C100073838 /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			children = (
 				99E7213129EAE6E80005B48C /* AccountButtons.swift */,
 				99E7213429EAF9AE0005B48C /* LoginTextField.swift */,
+				99231E1029EDF440003A8B8D /* CheckmarkView.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				99E7214029EB15550005B48C /* UserViewModel.swift in Sources */,
 				99E7210B29EAD8CA0005B48C /* WelcomeView.swift in Sources */,
 				99D012A129EBB9C100073838 /* NetworkServices.swift in Sources */,
+				99231E1129EDF440003A8B8D /* CheckmarkView.swift in Sources */,
 				99E7210F29EAD8EC0005B48C /* LoginView.swift in Sources */,
 				99D012AB29EBE6DF00073838 /* CreatePostViewModel.swift in Sources */,
 				99E7213829EAFF0D0005B48C /* LocationManager.swift in Sources */,

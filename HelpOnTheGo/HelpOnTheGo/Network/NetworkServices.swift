@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 class NetworkServices {
-    
 
     init() {}
 
@@ -215,7 +214,6 @@ class NetworkServices {
 
             completion(.success(data))
 
-            // set the body of the request
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] {
                     print(json)

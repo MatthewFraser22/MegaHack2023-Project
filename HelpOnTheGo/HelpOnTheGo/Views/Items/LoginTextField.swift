@@ -18,6 +18,7 @@ struct CustomAuthTextField: View {
                 if text.isEmpty {
                     Text(placeholder)
                         .foregroundColor(.gray)
+                        .fontWeight(.medium)
                 }
 
                 if isSecureTxtField {
@@ -33,7 +34,7 @@ struct CustomAuthTextField: View {
 
             Rectangle()
                 .frame(height: 1, alignment: .center)
-                .foregroundColor(.gray)
+                .foregroundColor(.backgroundColor)
                 .padding(.top, -2)
         }.padding(.horizontal)
     }

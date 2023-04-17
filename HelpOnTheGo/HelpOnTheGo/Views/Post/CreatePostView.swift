@@ -14,34 +14,33 @@ struct CreatePostView: View {
 
     @State var location: String = ""
     @State var bodyText: String = ""
-    @State var helpType: HelpState = .other
-    @State var toggleHelp: Bool = false
+    @State var selectedIndex: Int = 0
+    var options: [String] = [
+        "Needs help", "Wants to help"
+    ]
 
     var body: some View {
         VStack {
             topBar
+            VStack(alignment: .center) {
 
-            VStack {
-                if bodyText.isEmpty {
-                    VStack {
+                ZStack(alignment: .topLeading) {
+                    MultilineTextFeildRepresentable(text: $bodyText)
+                        .frame(height: 300, alignment: .center)
+                        .cornerRadius(8)
+                    if bodyText.isEmpty {
                         Text("Type your post!")
                             .foregroundColor(.gray)
                             .fontWeight(.medium)
-                        Divider()
-                            .foregroundColor(.gray)
-                            .frame(width: UIScreen.main.bounds.width * 0.8)
+                            .padding()
                     }
                 }
-
-                MultilineTextFeildRepresentable(text: $bodyText)
-                    .frame(height: 300, alignment: .center)
-                    .cornerRadius(8)
+                
 
                 CustomAuthTextField(placeholder: "Enter your location", isSecureTxtField: false, text: $location)
-                
-                Toggle(isOn: $toggleHelp) {
-                    Text(toggleHelp ? HelpState.other.rawValue : HelpState.needsHelp.rawValue)
-                }
+                    .padding(.bottom, 15)
+
+                selectMotive
 
                 Spacer()
 
@@ -51,7 +50,7 @@ struct CreatePostView: View {
                             id: auth.currentUser?._id ?? "",
                             user: user,
                             bodyText: bodyText,
-                            helpState: helpType.rawValue,
+                            helpState: options[selectedIndex],
                             location: location
                         )
 
@@ -75,6 +74,17 @@ struct CreatePostView: View {
         }
     }
 
+    private var selectMotive: some View {
+        VStack(alignment: .leading) {
+            Text("Select the option which you are posting for: ")
+                .foregroundColor(.backgroundColor)
+                .fontWeight(.medium)
+            ForEach(0..<options.count) { id in
+                CheckmarkView(id: id, text: options[id], selectedIndex: $selectedIndex)
+            }
+        }
+    }
+
     private var topBar: some View {
         ZStack {
             HStack {
@@ -90,7 +100,7 @@ struct CreatePostView: View {
             Text("Post")
                 .foregroundColor(.backgroundColor)
                 .font(.system(size: 40))
-                .fontWeight(.semibold)
+                .fontWeight(.bold)
         }
         
     }
