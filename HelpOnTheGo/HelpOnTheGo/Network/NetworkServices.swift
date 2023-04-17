@@ -18,7 +18,6 @@ class NetworkServices {
         let url = URL(string: "http://localhost:5001/api/posts")
 
         guard let url = url else {
-            print("GET ALL POSTS: url error")
             return
         }
 
@@ -35,12 +34,10 @@ class NetworkServices {
         let task = session.dataTask(with: request) { data, response, error in
             
             guard error == nil else {
-                print("GET ALL POSTS: error \(error)")
                 return
             }
 
             guard let data = data else {
-                print("GET ALL POSTS: data error \(error)")
                 completion(.failure(.custom(errorMessage: "Error getting data")))
                 return
             }
@@ -49,12 +46,10 @@ class NetworkServices {
             do {
                 // let response = try JSONDecoder().decode([PostModel].self, from: data)
                 let dataString = String(data: data, encoding: .utf8)
-                print("Raw JSON data: \(dataString ?? "Unable to convert data to string")")
+                //print("Raw JSON data: \(dataString ?? "Unable to convert data to string")")
                 let response = try JSONDecoder().decode([PostModel].self, from: data)
-                print("SUCCESS: \(response)")
                 //completion(.success(response))
             } catch let error {
-                print("GET ALL POSTS: random error \(error)")
                 completion(.failure(.custom(errorMessage: error.localizedDescription)))
             }
         }
@@ -73,10 +68,8 @@ class NetworkServices {
             requestBody: ["email" : email, "password" : password]) { result in
                 switch result {
                 case .success(let data):
-                    print("TESTING: success logged in")
                     completion(.success(data))
                 case .failure(_):
-                    print("TESTING: failure making request")
                     completion(.failure(.invalidCredentials))
                 }
             }
@@ -96,12 +89,9 @@ class NetworkServices {
         ) { result in
                 switch result {
                 case .success(let data):
-                    print("TESTING: Success data uploaded")
                     let stringData = String(data: data!, encoding: .utf8)
-                    print("JSON DATA \(stringData)")
                     completion(.success(data))
                 case .failure(let error):
-                    print("TESTING: ERROR data uploaded")
                     completion(.failure(.invalidCredentials))
                 }
             }
@@ -120,8 +110,10 @@ class NetworkServices {
         ) { result in
                 switch result {
                 case .success(let data):
+                    print("SUCCESS: There is data \(String(data: data!, encoding: .utf8))")
                     completion(.success(data))
-                case .failure(_):
+                case .failure(let error):
+                    print("Error: failure to create user no data \(error)")
                     completion(.failure(.invalidCredentials))
                 }
             }
@@ -142,38 +134,37 @@ class NetworkServices {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
         } catch let error {
-            print(error)
+            print("ERROR: error adding request body \(error)")
         }
 
         request.httpMethod = httpMethod.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-//        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        //request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
         let session = URLSession.shared
 
         let task = session.dataTask(with: request) { data, response, error in
             
             guard error == nil else {
-                print("TESTING: error with data \(error)")
+                print("ERROR: error with url requst \(error)")
                 return
             }
 
             guard let data = data else {
-                print("TESTING: data missing \(data)")
+                print("TESTING: data missing")
                 completion(.failure(.noData))
                 return
             }
 
             completion(.success(data))
 
-            // set the body of the request
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] {
                     print(json)
                 }
             } catch let error {
-                print("TESTING: Error with serialization")
+                print("Error: Error with serialization \(error)")
                 completion(.failure(.decodingError))
             }
         }
@@ -211,12 +202,10 @@ class NetworkServices {
         let task = session.dataTask(with: request) { data, response, error in
             
             guard error == nil else {
-                print("TESTING: error with data \(error)")
                 return
             }
 
             guard let data = data else {
-                print("TESTING: data missing \(data)")
                 completion(.failure(.noData))
                 return
             }
@@ -229,7 +218,6 @@ class NetworkServices {
                     print(json)
                 }
             } catch let error {
-                print("TESTING: Error with serialization")
                 completion(.failure(.decodingError))
             }
         }

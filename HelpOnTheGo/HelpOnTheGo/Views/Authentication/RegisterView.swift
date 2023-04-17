@@ -32,7 +32,7 @@ struct RegisterView: View {
                 registerButton
 
                 Spacer()
-                
+
             }
             .navigationTitle("")
             .toolbar(.hidden)
@@ -67,13 +67,18 @@ struct RegisterView: View {
                         return
                     }
 
-                    vm.create(email: email, password: password)
+                    vm.create(email: email, password: password) { result in
+                        switch result {
+                        case .success():
+                            withAnimation {
+                                isAuthenticated = true
+                            }
 
-                    withAnimation {
-                        isAuthenticated = true
+                            storeUserDataToFirestore()
+                        case .failure(let error):
+                            #warning("Make pop up alert")
+                        }
                     }
-
-                    storeUserDataToFirestore()
 
                 }
             } label: {
@@ -88,7 +93,11 @@ struct RegisterView: View {
                     }
             }
 
-            NavigationLink(destination: MainView().environmentObject(vm).toolbar(.hidden), isActive: $isAuthenticated) { EmptyView() }
+            NavigationLink(
+                destination: MainView()
+                    .environmentObject(vm)
+                    .toolbar(.hidden),
+                isActive: $isAuthenticated) { EmptyView() }
         }
     }
 

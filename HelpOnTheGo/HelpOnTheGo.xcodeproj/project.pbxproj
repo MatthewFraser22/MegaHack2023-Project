@@ -74,7 +74,7 @@
 		99D012B229EBE7CA00073838 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		99D012B429EBE89A00073838 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		99E720F729EAD7C90005B48C /* HelpOnTheGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelpOnTheGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		99E720FA29EAD7C90005B48C /* HelpOnTheGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOnTheGoApp.swift; sourceTree = "<group>"; };
+		99E720FA29EAD7C90005B48C /* HelpOnTheGoApp.swift */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = HelpOnTheGoApp.swift; sourceTree = "<group>"; };
 		99E720FC29EAD7C90005B48C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		99E720FE29EAD7CB0005B48C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99E7210129EAD7CB0005B48C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -125,6 +125,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		99231E0D29EDBAD8003A8B8D /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				99D012B029EBE7B400073838 /* ChatMessage.swift */,
+				99D012B229EBE7CA00073838 /* FirebaseConstants.swift */,
+				99E7214E29EB3E3B0005B48C /* Message.swift */,
+				99E7216429EB68B90005B48C /* ChatUser.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		99231E0E29EDBAEE003A8B8D /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				99D012A829EBE6C900073838 /* PostItem.swift */,
+				99D012B429EBE89A00073838 /* PostModel.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		99231E0F29EDBAF7003A8B8D /* User */ = {
+			isa = PBXGroup;
+			children = (
+				99E7214429EB15FD0005B48C /* User.swift */,
+				99E7214A29EB1B420005B48C /* UserLocationModel.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		99D0129529EBB07700073838 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,14 +322,9 @@
 		99E7214329EB15F20005B48C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				99E7214429EB15FD0005B48C /* User.swift */,
-				99E7214A29EB1B420005B48C /* UserLocationModel.swift */,
-				99E7214E29EB3E3B0005B48C /* Message.swift */,
-				99E7216429EB68B90005B48C /* ChatUser.swift */,
-				99D012A829EBE6C900073838 /* PostItem.swift */,
-				99D012B029EBE7B400073838 /* ChatMessage.swift */,
-				99D012B229EBE7CA00073838 /* FirebaseConstants.swift */,
-				99D012B429EBE89A00073838 /* PostModel.swift */,
+				99231E0F29EDBAF7003A8B8D /* User */,
+				99231E0E29EDBAEE003A8B8D /* Post */,
+				99231E0D29EDBAD8003A8B8D /* Chat */,
 			);
 			path = Models;
 			sourceTree = "<group>";

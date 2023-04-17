@@ -18,10 +18,8 @@ class CreatePostViewModel: ObservableObject {
         NetworkServices.getAllPosts(userId: userId) { result in
             switch result {
             case .success(let success):
-                print("SUCCESS GOT ALL POSTS")
                 print(success)
             case .failure(let failure):
-                print("FAILURE NOOOOOOO")
                 print(failure)
             }
         }

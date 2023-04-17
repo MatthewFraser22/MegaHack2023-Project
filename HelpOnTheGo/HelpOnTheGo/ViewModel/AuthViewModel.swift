@@ -45,20 +45,23 @@ class AuthViewModel: ObservableObject {
                     DispatchQueue.main.async { [self] in
 
                         self.currentUser = response.user
-                        print("1. Token: auth set = \(response.user) \(response)")
                     }
                 } catch let e {
-                    print("TESTING: Error decoding \(e)")
+                    print("ERROR: cannot decode \(e)")
                 }
 
             case .failure(let error):
-                print("TESTING: FAILURE \(error)")
+                print("Error: FAILURE \(error)")
                 print(error.localizedDescription)
             }
         }
     }
 
-    func create(email: String, password: String) {
+    func create(
+        email: String,
+        password: String,
+        completion: @escaping (_ result: Result<Void, Error>) -> Void
+    ) {
         NetworkServices.createNewUser(name: email, email: email, password: password) { result in
             switch result {
             case .success(let data):
@@ -66,10 +69,12 @@ class AuthViewModel: ObservableObject {
                    let response = try JSONDecoder().decode(ApiResponse.self, from: data!)
                     DispatchQueue.main.async { [self] in
                         self.currentUser = response.user
-                        print("CURRENT USER = \(currentUser) \(response)")
+                        completion(.success(Void()))
+                        print("SUCCESS: CURRENT USER = \(currentUser) \(response)")
                     }
                 } catch let e {
-                    print("1. create user \(e.localizedDescription)")
+                    completion(.failure(e))
+                    print("Error: failed to create user current user = nil \(e.localizedDescription)")
                 }
 
             case .failure(let error):
