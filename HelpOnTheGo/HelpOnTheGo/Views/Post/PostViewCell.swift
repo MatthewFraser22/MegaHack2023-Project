@@ -49,9 +49,28 @@ struct PostViewCell: View {
 
                         Spacer()
                         
-                        Text("Location: \(location)")
-                            .foregroundColor(.secondary)
-                            .fontWeight(.medium)
+                        HStack {
+                            Text("Location: \(location)")
+                                .foregroundColor(.secondary)
+                                .fontWeight(.medium)
+
+                            Spacer()
+    
+                            Button {
+                                // GO TO MAP PAGE
+                            } label: {
+                                HStack {
+                                    Image(systemName: "mappin")
+                                        .foregroundColor(.red)
+                                    Text("See user on map")
+                                        .foregroundColor(.backgroundColor)
+                                        .font(.system(size: 12))
+                                }
+                            }
+
+                            
+                        }
+                        
                     }
                     .padding()
                 }

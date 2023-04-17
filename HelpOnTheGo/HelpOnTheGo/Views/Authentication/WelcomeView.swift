@@ -20,7 +20,7 @@ struct WelcomeView: View {
                 VStack(alignment: .center, spacing: 2) {
                     helpOnTheGoText
                     Spacer()
-                    Image("TweetImage")
+                    Image("logo")
                         .resizable()
                         .frame(width: 200, height: 200)
                         .clipShape(Circle())
