@@ -11,7 +11,6 @@ import Combine
 
 class CreatePostViewModel: ObservableObject {
     @Published var userPosts = [PostModel]()
-    @Published var refreshPost: Bool = false
     static let shared = CreatePostViewModel()
     private var cancellables: Set<AnyCancellable> = []
 
@@ -22,7 +21,11 @@ class CreatePostViewModel: ObservableObject {
             switch result {
             case .success(let posts):
                 print("SUCCESS: Setting user posts \(posts)")
-                self.userPosts = posts
+                DispatchQueue.main.async {
+                    print("UPDATED POST: \(posts.first)")
+                    self.userPosts = posts
+                }
+                
             case .failure(let failure):
                 print("ERROR: failed to set psots")
                 print(failure)
@@ -34,12 +37,8 @@ class CreatePostViewModel: ObservableObject {
         NetworkServices.uploadPost(userId: userId, postItem: postItem) { result in
             switch result {
             case .success(_):
-                self.$refreshPost
-                    .receive(on: RunLoop.main)
-                    .sink { _ in
-                        self.refreshPost.toggle()
-                    }.store(in: &self.cancellables)
-                
+                self.getAllPost()
+
 //                guard let data = data else {
 //                    return
 //                }

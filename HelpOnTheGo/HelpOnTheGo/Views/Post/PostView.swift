@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PostView: View {
     @State var showCreatePost: Bool = false
+    @State var refreshView: Bool = false
     @EnvironmentObject var authViewModel: AuthViewModel
     @ObservedObject var createPostVM = CreatePostViewModel.shared
 
@@ -27,6 +28,12 @@ struct PostView: View {
         .fullScreenCover(isPresented: $showCreatePost) {
             CreatePostView()
                 .environmentObject(authViewModel)
+                .onDisappear {
+                    self.refreshView.toggle()
+                }
+        }
+        .onChange(of: refreshView) { _ in
+            createPostVM.getAllPost()
         }
     }
 
