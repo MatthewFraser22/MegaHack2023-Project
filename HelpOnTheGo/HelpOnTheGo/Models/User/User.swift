@@ -15,6 +15,5 @@ import Foundation
 struct User: Codable {
     let name: String
     let email: String
-    let date: String
     let _id: String
 }
