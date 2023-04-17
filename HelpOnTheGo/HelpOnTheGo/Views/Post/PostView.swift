@@ -16,8 +16,8 @@ struct PostView: View {
         ZStack {
             ScrollView {
                 ForEach(createPostVM.userPosts) { post in
-                    PostViewCell(user: post.user, bodyText: post.text, helpState: post.motive, location: post.location)
-                    
+                    PostViewCell(user: post.name, bodyText: post.text, helpState: post.motive, location: post.location)
+
                     Divider()
                 }
             }

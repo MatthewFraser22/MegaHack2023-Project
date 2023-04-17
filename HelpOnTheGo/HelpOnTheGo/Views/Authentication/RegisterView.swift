@@ -24,7 +24,7 @@ struct RegisterView: View {
                 Text("Welcome!")
                     .foregroundColor(.backgroundColor)
                     .font(.system(size: 32, weight: .bold, design: .default))
-                
+
                 CustomAuthTextField(placeholder: "username, name, or fullname", isSecureTxtField: false, text: $username)
                 CustomAuthTextField(placeholder: "email", isSecureTxtField: false, text: $email)
                 CustomAuthTextField(placeholder: "password", isSecureTxtField: true, text: $password)
@@ -67,7 +67,7 @@ struct RegisterView: View {
                         return
                     }
 
-                    vm.create(email: email, password: password) { result in
+                    vm.create(name: username, email: email, password: password) { result in
                         switch result {
                         case .success():
                             withAnimation {

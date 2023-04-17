@@ -64,11 +64,12 @@ class AuthViewModel: ObservableObject {
     }
 
     func create(
+        name: String,
         email: String,
         password: String,
         completion: @escaping (_ result: Result<Void, Error>) -> Void
     ) {
-        NetworkServices.createNewUser(name: email, email: email, password: password) { result in
+        NetworkServices.createNewUser(name: name, email: email, password: password) { result in
             switch result {
             case .success(let data):
                 guard let data = data else {

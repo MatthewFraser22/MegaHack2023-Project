@@ -35,6 +35,7 @@ struct CreatePostView: View {
 
                 MultilineTextFeildRepresentable(text: $bodyText)
                     .frame(height: 300, alignment: .center)
+                    .cornerRadius(8)
 
                 CustomAuthTextField(placeholder: "Enter your location", isSecureTxtField: false, text: $location)
                 
