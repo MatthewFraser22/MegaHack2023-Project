@@ -36,17 +36,30 @@ class AuthViewModel: ObservableObject {
             }.store(in: &cancellable)
     }
 
-    func login(email: String, password: String) {
+    func login(
+        email: String,
+        password: String,
+        completion: @escaping (_ result: Result<Void, Error>) -> Void
+    ) {
         NetworkServices.login(email: email, password: password) { result in
             switch result {
             case .success(let data):
-                do {
-                   let response = try JSONDecoder().decode(User.self, from: data!)
-                    DispatchQueue.main.async { [self] in
+                guard let data = data else {
+                    completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data returned"])))
+                    return
+                }
 
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
+                    let userJson = json["user"] as! [String : Any]
+                    let user = try JSONSerialization.data(withJSONObject: userJson)
+                    let response = try JSONDecoder().decode(User.self, from: user)
+                    DispatchQueue.main.async { [self] in
                         self.currentUser = response
+                        completion(.success(Void()))
                     }
                 } catch let e {
+                    completion(.failure(e))
                     print("ERROR: cannot decode \(e)")
                 }
 

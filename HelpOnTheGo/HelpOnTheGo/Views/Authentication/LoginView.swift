@@ -60,10 +60,16 @@ struct LoginView: View {
                             return
                         }
 
-                        self.isLoggedin.toggle()
-
-                        authViewModel.login(email: email, password: password)
-                        storeUserDataToFirestore()
+                        authViewModel.login(email: email, password: password) { result in
+                            switch result {
+                            case .success(let success):
+                                self.isLoggedin.toggle()
+                                storeUserDataToFirestore()
+                            case .failure(let failure):
+                                #warning("present error")
+                            }
+                        }
+                        
                     }
                 }
             } label: {
