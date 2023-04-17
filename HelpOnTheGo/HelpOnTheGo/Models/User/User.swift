@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct ApiResponse: Decodable {
-    let token: String
-    let user: User
-}
+//struct ApiResponse: Decodable {
+//    let token: String
+//    let user: User
+//}
 
 struct User: Codable {
     let name: String
     let email: String
-    let location: String
+    let date: String
     let _id: String
 }

@@ -41,10 +41,10 @@ class AuthViewModel: ObservableObject {
             switch result {
             case .success(let data):
                 do {
-                   let response = try JSONDecoder().decode(ApiResponse.self, from: data!)
+                   let response = try JSONDecoder().decode(User.self, from: data!)
                     DispatchQueue.main.async { [self] in
 
-                        self.currentUser = response.user
+                        self.currentUser = response
                     }
                 } catch let e {
                     print("ERROR: cannot decode \(e)")
@@ -65,10 +65,13 @@ class AuthViewModel: ObservableObject {
         NetworkServices.createNewUser(name: email, email: email, password: password) { result in
             switch result {
             case .success(let data):
+                
+                let dataString = String(data: data!, encoding: .utf8)
+                print("ERROR the data is here: \(dataString)")
                 do {
-                   let response = try JSONDecoder().decode(ApiResponse.self, from: data!)
+                   let response = try JSONDecoder().decode(User.self, from: data!)
                     DispatchQueue.main.async { [self] in
-                        self.currentUser = response.user
+                        self.currentUser = response
                         completion(.success(Void()))
                         print("SUCCESS: CURRENT USER = \(currentUser) \(response)")
                     }

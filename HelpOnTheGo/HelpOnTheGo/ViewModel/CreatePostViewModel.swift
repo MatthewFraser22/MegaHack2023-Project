@@ -30,7 +30,7 @@ class CreatePostViewModel: ObservableObject {
             switch result {
             case .success(let data):
                 do {
-                   let response = try JSONDecoder().decode(ApiResponse.self, from: data!)
+                   let response = try JSONDecoder().decode(User.self, from: data!)
                     DispatchQueue.main.async {
                         print("UPLOAD POST REPONSE \(response)")
                     }
