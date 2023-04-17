@@ -1,1 +1,6 @@
 *.xcuserstate
+node_modules/
+.env
+.DS_Store
+*.xcuserdatad
+xcuserdata/

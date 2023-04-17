@@ -52,10 +52,6 @@ const ProfileSchema = new mongoose.Schema({
 			default: '',
 		},
 	},
-	avatar: {
-		type: Buffer,
-		default: null,
-	},
 });
 
 module.exports = mongoose.model('profile', ProfileSchema);
