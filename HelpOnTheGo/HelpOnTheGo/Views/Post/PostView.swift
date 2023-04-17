@@ -19,7 +19,9 @@ struct PostView: View {
                 ForEach(createPostVM.userPosts) { post in
                     PostViewCell(user: post.name, bodyText: post.text, helpState: post.motive, location: post.location)
 
-                    Divider()
+                    Rectangle()
+                        .foregroundColor(.backgroundColor)
+                        .frame(width: UIScreen.main.bounds.width * 0.85, height: 1)
                 }
             }
 

@@ -20,9 +20,9 @@ struct PostViewCell: View {
 
     var body: some View {
         VStack {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 8)
                 .frame(width: UIScreen.main.bounds.width * 0.9, height: 250)
-                .foregroundColor(Color(.init(white: 0.96, alpha: 1)))
+                .foregroundColor(Color(.init(white: 0.97, alpha: 1)))
                 .overlay {
                     VStack(alignment: .leading) {
                         HStack {
@@ -35,15 +35,16 @@ struct PostViewCell: View {
                                 }
 
                             Text(user)
-                                .foregroundColor(.backgroundColor)
+                                .foregroundColor(.black)
                                 .fontWeight(.heavy)
 
                             Spacer()
 
                         }
                         Text(helpState)
-                            .foregroundColor(.backgroundColor)
+                            .foregroundColor(helpState == HelpState.other.rawValue ? .backgroundColor : .red)
                             .fontWeight(.heavy)
+                            .padding(.bottom, 2)
                         Text(bodyText)
 
                         Spacer()
@@ -60,8 +61,8 @@ struct PostViewCell: View {
     }
 }
 
-//struct PostViewCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PostViewCell(user: User(name: "nil", email: "nil"), bodyText: "testsfdfsfsdfsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsd", helpState: .needsHelp, location: "San fran")
-//    }
-//}
+struct PostViewCell_Previews: PreviewProvider {
+    static var previews: some View {
+        PostViewCell(user: "Matthew", bodyText: "testsfdfsfsdfsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsd", helpState: "needs help", location: "San fran")
+    }
+}
