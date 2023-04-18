@@ -62,6 +62,7 @@ struct ProfileView: View {
     
     var body: some View {
         
+        
         ScrollView {
             
             ZStack{
@@ -75,7 +76,7 @@ struct ProfileView: View {
                     }
                     nameSection
                     
-                    userTypeSection
+                    
                     locationSection
                     
                     VStack(spacing: 5) {
@@ -91,13 +92,14 @@ struct ProfileView: View {
                         }
                         Divider().background(Color.gray)
                     }
-                    bioSection
+                    //bioSection
                     
                     reviewsSection
                     Spacer()
                 }
             }
             .padding()
+            
         }
     }
     
@@ -118,15 +120,42 @@ struct ProfileView: View {
                 ZStack {
                     Text("\(name)")
                         .font(.custom("Futura-Heavy", size: 36)) // Set custom font and size
-                        .foregroundColor(.black) // Set text color
+                        .foregroundColor(.backgroundColor)
                         .frame(maxWidth: .infinity)
+                        
                     
                     chatButton
                         .offset(x: geometry.size.width * 0.5 - 65) // Adjust the value as needed
                 }
             }
-            .frame(height: 50)
+            Spacer()
+                .frame(height: 35)
+            
+            userTypeSection
+            .frame(height: 35)
+            bioSection
+            Spacer()
             contactSection
+        }
+    }
+    
+    var contactSection: some View {
+        HStack(spacing: 2) {
+            Spacer()
+            Image(systemName: "phone.fill") // Use SF Symbol instead of emoji
+                        .foregroundColor(.backgroundColor) // Set the color to the background color
+                        .font(Font.system(size: 20, weight: .regular))
+            Text("\(contact.phone)")
+                .font(.callout)
+                .foregroundColor(.black)
+            Spacer()
+            Image(systemName: "envelope.fill") // Use SF Symbol instead of emoji
+                        .foregroundColor(.backgroundColor) // Set the color to the background color
+                        .font(Font.system(size: 20, weight: .regular))
+            Text("\(contact.email)")
+                .font(.callout)
+                .foregroundColor(.black)
+            Spacer()
         }
     }
     
@@ -137,6 +166,17 @@ struct ProfileView: View {
             Text("💬")
                 .font(.system(size: 24))
                 .foregroundColor(.blue)
+        }
+    }
+    
+    var userTypeSection: some View {
+        HStack {
+            Spacer()
+            Text("\(userType)")
+                .foregroundColor(.black)
+                .font(.system(size: 14)) // Set custom font size
+                .fontWeight(.bold)
+            Spacer()
         }
     }
     
@@ -191,33 +231,14 @@ struct ProfileView: View {
         .frame(maxWidth: .infinity)
     }
     
-    var userTypeSection: some View {
-        HStack {
-            Spacer()
-            Text("\(userType)")
-                .font(.system(size: 14)) // Set custom font size
-                .fontWeight(.bold)
-            Spacer()
-        }
-    }
     
-    var contactSection: some View {
-        HStack {
-            Spacer()
-            Text("\(contact.phone)")
-                .font(.callout)
-                .foregroundColor(.gray)
-            Spacer()
-            Text("\(contact.email)")
-                .font(.callout)
-                .foregroundColor(.gray)
-            Spacer()
-        }
-    }
+    
+    
     
     var reviewsSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Reviews")
+                .foregroundColor(.backgroundColor)
                 .font(.title)
                 .fontWeight(.bold)
             
@@ -233,13 +254,15 @@ struct ProfileView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(reviews.prefix(numberOfReviewsToShow)) { review in
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Rating: \(review.rating)")
+                            Text("Rating: \(review.rating)/5")
                                 .fontWeight(.bold)
                             Text(review.review)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .padding()
                         .background(Color.gray.opacity(0.1))
                         .cornerRadius(10)
+                        
                     }
                     
                     if numberOfReviewsToShow < reviews.count {
