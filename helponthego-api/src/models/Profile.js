@@ -42,6 +42,9 @@ const ProfileSchema = new mongoose.Schema({
 			},
 		},
 	],
+	avatar: {
+		type: Buffer,
+	},
 	contact: {
 		phone: {
 			type: String,
