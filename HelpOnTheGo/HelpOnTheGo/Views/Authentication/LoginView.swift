@@ -68,7 +68,7 @@ struct LoginView: View {
                         authViewModel.login(email: email, password: password) { result in
                             switch result {
                             case .success(let success):
-                                self.isLoggedin.toggle()
+                                self.isLoggedin = true
                                 storeUserDataToFirestore()
                             case .failure(let failure):
                                 #warning("present error")
