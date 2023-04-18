@@ -19,6 +19,11 @@ struct LoginView: View {
         NavigationView {
             VStack {
                 topBar
+                
+                Text("Login!")
+                    .foregroundColor(.backgroundColor)
+                    .font(.system(size: 32, weight: .bold, design: .default))
+
                 CustomAuthTextField(placeholder: "To get started enter your email", isSecureTxtField: false, text: $email)
                 CustomAuthTextField(placeholder: "password", isSecureTxtField: true, text: $password)
                 
