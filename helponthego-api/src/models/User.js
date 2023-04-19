@@ -14,10 +14,19 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	location: {
+		type: { type: String, enum: ['Point'], required: true },
+		coordinates: {
+			type: [Number],
+			required: true,
+		},
+	},
 	date: {
 		type: Date,
 		default: Date.now,
 	},
 });
+
+UserSchema.index({ location: '2dsphere' });
 
 module.exports = mongoose.model('user', UserSchema);

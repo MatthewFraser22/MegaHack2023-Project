@@ -104,12 +104,31 @@ router.delete('/:id', auth, async (req, res) => {
 	}
 });
 
-// @route   Get api/posts
+// @route   Get api/posts/:lat/:lon
 // @desc    Get nearby posts
 // @access  Private ;
-router.get('/', async (req, res) => {
+router.get('/nearby/:lat/:lon', auth, async (req, res) => {
 	try {
-		const posts = await Post.find().sort({ date: -1 });
+		const { lat, lon } = req.params;
+
+		if (!lat || !lon) {
+			return res
+				.status(400)
+				.json({ msg: 'Latitude and Longitude are required' });
+		}
+		const maxDistance = 50000;
+
+		const posts = await Post.find({
+			location: {
+				$near: {
+					$geometry: {
+						type: 'Point',
+						coordinates: [parseFloat(lat), parseFloat(lon)],
+					},
+					$maxDistance: maxDistance,
+				},
+			},
+		});
 		res.json(posts);
 	} catch (err) {
 		console.error(err.message);

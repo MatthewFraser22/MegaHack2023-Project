@@ -20,8 +20,11 @@ const PostSchema = new mongoose.Schema({
 		type: Buffer,
 	},
 	location: {
-		type: String,
-		required: true,
+		type: { type: String, enum: ['Point'], required: true },
+		coordinates: {
+			type: [Number],
+			required: true,
+		},
 	},
 	date: {
 		type: Date,
@@ -29,4 +32,5 @@ const PostSchema = new mongoose.Schema({
 	},
 });
 
+PostSchema.index({ location: '2dsphere' });
 module.exports = mongoose.model('post', PostSchema);
