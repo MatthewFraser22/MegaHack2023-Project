@@ -9,8 +9,9 @@ import SwiftUI
 
 struct CreatePostView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var vm = CreatePostViewModel()
     @EnvironmentObject private var auth: AuthViewModel
+    @EnvironmentObject private var locationManager: LocationManager
+    @ObservedObject private var vm = CreatePostViewModel()
 
     @State var location: String = ""
     @State var bodyText: String = ""
@@ -35,7 +36,6 @@ struct CreatePostView: View {
                             .padding()
                     }
                 }
-                
 
                 CustomAuthTextField(placeholder: "Enter your location", isSecureTxtField: false, text: $location)
                     .padding(.bottom, 15)
@@ -44,28 +44,32 @@ struct CreatePostView: View {
 
                 Spacer()
 
-                Button {
-                    if let user = auth.currentUser {
-                        let post = PostItem(
-                            id: auth.currentUser?._id ?? "",
-                            user: user,
-                            bodyText: bodyText,
-                            helpState: options[selectedIndex],
-                            location: location
-                        )
+                if locationManager.currentLocation != nil {
+                    Button {
+                        if let user = auth.currentUser {
+                            let post = PostItem(
+                                id: auth.currentUser?._id ?? "",
+                                user: user,
+                                bodyText: bodyText,
+                                helpState: options[selectedIndex],
+                                location: location
+                            )
 
-                        vm.uploadPost(postItem: post, userId: auth.currentUser?._id ?? "unknown")
-                        self.presentationMode.wrappedValue.dismiss()
+                            self.locationManager.dropPin(locationString: location)
+                            vm.uploadPost(postItem: post, userId: auth.currentUser?._id ?? "unknown")
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    } label: {
+                        Text("Post")
+                            .foregroundColor(.white)
                     }
-                } label: {
-                    Text("Post")
-                        .foregroundColor(.white)
-                        
+                    .padding([.top, .bottom], 10)
+                    .padding([.leading, .trailing], 25)
+                    .background(Color.backgroundColor)
+                    .cornerRadius(8)
+                } else {
+                    RequestUserLocationView()
                 }
-                .padding([.top, .bottom], 10)
-                .padding([.leading, .trailing], 25)
-                .background(Color.backgroundColor)
-                .cornerRadius(8)
 
             }
             .padding()

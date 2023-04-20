@@ -8,11 +8,21 @@
 import Foundation
 import CoreLocation
 import SwiftUI
+import MapKit
 
 class LocationManager: NSObject, ObservableObject {
-    @Published var currentLocation: CLLocation?
     private let locationManager = CLLocationManager()
     static let shared = LocationManager()
+    private let geocoder = CLGeocoder()
+    @Published var currentLocation: CLLocation?
+//    @Published var mapPins: [UserLocation] = [
+//        UserLocation(coordinates: CLLocationCoordinate2D(latitude: 48.8606, longitude: 2.3376), userId: "1"),
+//        UserLocation(coordinates: CLLocationCoordinate2D(latitude: 41.9009, longitude: 12.4833), userId: "2"),
+//        UserLocation(coordinates: CLLocationCoordinate2D(latitude: 41.8986, longitude: 12.4769), userId: "4"),
+//        UserLocation(coordinates: CLLocationCoordinate2D(latitude: 41.8902, longitude: 12.4922), userId: "6"),
+//        UserLocation(coordinates: CLLocationCoordinate2D(latitude: 34.01009, longitude: -118.496948), userId: "7")
+//    ]
+    @Published var mapAnnotations = [MKPointAnnotation]()
 
     override init() {
         super.init()
@@ -27,59 +37,39 @@ class LocationManager: NSObject, ObservableObject {
         locationManager.requestWhenInUseAuthorization()
     }
 
-//    static func getAddressFromLatLon() {
-//        var pdblLatitude: String = self.currentLocation?.coordinate.latitude.description ?? ""
-//        var pdblLongitude: String = self.currentLocation?.coordinate.longitude.description ?? ""
-//        var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-//        let lat: Double = Double("\(pdblLatitude)")!
-//        //21.228124
-//        let lon: Double = Double("\(pdblLongitude)")!
-//        //72.833770
-//        let ceo: CLGeocoder = CLGeocoder()
-//        center.latitude = lat
-//        center.longitude = lon
-//
-//        let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-//
-//
-//        ceo.reverseGeocodeLocation(loc, completionHandler:
-//                                    {(placemarks, error) in
-//            if (error != nil)
-//            {
-//                print("reverse geodcode fail: \(error!.localizedDescription)")
-//            }
-//            let pm = placemarks! as [CLPlacemark]
-//
-//            if pm.count > 0 {
-//                let pm = placemarks![0]
-//                print(pm.country)
-//                print(pm.locality)
-//                print(pm.subLocality)
-//                print(pm.thoroughfare)
-//                print(pm.postalCode)
-//                print(pm.subThoroughfare)
-//                var addressString : String = ""
-//                if pm.subLocality != nil {
-//                    addressString = addressString + pm.subLocality! + ", "
-//                }
-//                if pm.thoroughfare != nil {
-//                    addressString = addressString + pm.thoroughfare! + ", "
-//                }
-//                if pm.locality != nil {
-//                    addressString = addressString + pm.locality! + ", "
-//                }
-//                if pm.country != nil {
-//                    addressString = addressString + pm.country! + ", "
-//                }
-//                if pm.postalCode != nil {
-//                    addressString = addressString + pm.postalCode! + " "
-//                }
-//
-//
-//                print(addressString)
-//            }
-//        })
-//    }
+    func dropPin(locationString: String) {
+        geocode(locationString: locationString, completion: { location in
+            if let location = location {
+                let point = MKPointAnnotation(
+                    __coordinate: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
+                        )
+                point.title = locationString
+
+                self.mapAnnotations.append(point)
+            } else {
+                print("Geocoding failed")
+            }
+        })
+    }
+
+    func geocode(
+        locationString: String,
+        completion: @escaping (CLLocation?) -> Void
+    ) {
+        geocoder.geocodeAddressString(locationString) { (placemarks, error) in
+            guard error == nil else {
+                completion(nil)
+                return
+            }
+
+            guard let placemark = placemarks?.first, let location = placemark.location else {
+                completion(nil)
+                return
+            }
+
+            completion(location)
+        }
+    }
 
 }
 
@@ -106,7 +96,6 @@ extension LocationManager: CLLocationManagerDelegate {
 
         DispatchQueue.main.async {
             self.currentLocation = location
-            print(self.currentLocation?.coordinate)
         }
     }
 }

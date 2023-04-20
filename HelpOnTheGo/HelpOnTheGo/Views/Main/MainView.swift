@@ -13,6 +13,7 @@ fileprivate enum TabState: Int {
 
 struct MainView: View {
     @EnvironmentObject private var authVM: AuthViewModel
+    @EnvironmentObject private var locationManager: LocationManager
 
     var messages: [Message] = [
         Message(sender: "Matt", body: "Hey!")
@@ -29,11 +30,13 @@ struct MainView: View {
         TabView {
             PostView()
                 .environmentObject(authVM)
+                .environmentObject(locationManager)
                 .tabItem {
                     Image(systemName: "house")
                 }
                 .toolbar(.hidden)
             MapView()
+                .environmentObject(locationManager)
                 .tabItem {
                     Image(systemName: "map")
                 }

@@ -14,21 +14,22 @@ struct LoginView: View {
     @State var isLoggedin: Bool = false
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var authViewModel: AuthViewModel
+    @EnvironmentObject private var locationManager: LocationManager
 
     var body: some View {
         NavigationView {
             VStack {
                 topBar
-                
+
                 Text("Login!")
                     .foregroundColor(.backgroundColor)
                     .font(.system(size: 32, weight: .bold, design: .default))
 
                 CustomAuthTextField(placeholder: "To get started enter your email", isSecureTxtField: false, text: $email)
                 CustomAuthTextField(placeholder: "password", isSecureTxtField: true, text: $password)
-                
+
                 loginButton
-                
+
                 Spacer(minLength: 0)
             }
             .navigationTitle("")
@@ -88,7 +89,13 @@ struct LoginView: View {
                     }
             }
 
-            NavigationLink(destination: MainView().environmentObject(authViewModel).toolbar(.hidden), isActive: $isLoggedin) { EmptyView() }
+            NavigationLink(
+                destination: MainView()
+                    .environmentObject(authViewModel)
+                    .environmentObject(locationManager)
+                    .toolbar(.hidden),
+                isActive: $isLoggedin
+            ) { EmptyView() }
         }.padding()
     }
     

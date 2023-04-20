@@ -9,12 +9,13 @@ import SwiftUI
 import Firebase
 
 struct RegisterView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var vm: AuthViewModel
+    @EnvironmentObject private var locationManager: LocationManager
     @State var username: String = ""
     @State var email: String = ""
     @State var password: String = ""
-    @Environment(\.presentationMode) var presentationMode
     @State var isAuthenticated: Bool = false
-    @EnvironmentObject private var vm: AuthViewModel
 
     var body: some View {
         NavigationView {
@@ -96,6 +97,7 @@ struct RegisterView: View {
             NavigationLink(
                 destination: MainView()
                     .environmentObject(vm)
+                    .environmentObject(locationManager)
                     .toolbar(.hidden),
                 isActive: $isAuthenticated) { EmptyView() }
         }

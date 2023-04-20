@@ -9,51 +9,55 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    @StateObject private var locationViewModel = LocationViewModel.shared
-    @ObservedObject private var locationManager = LocationManager.shared
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var locationManager: LocationManager
     @State var selectedUser: UserLocation? = nil
 
-    var region: Binding<MKCoordinateRegion>? {
-        guard let location = locationManager.currentLocation else {
-            return MKCoordinateRegion.goldenGateBridge().getBinding()
-        }
-
-        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-
-        return region.getBinding()
-    }
+//    var region: Binding<MKCoordinateRegion>? {
+//        guard let location = locationManager.currentLocation else {
+//            return MKCoordinateRegion.goldenGateBridge().getBinding()
+//        }
+//
+//        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+//
+//        return region.getBinding()
+//    }
 
     var body: some View {
         if locationManager.currentLocation == nil {
-            requestLocationView
+            RequestUserLocationView()
         } else {
-            if let region = region {
-                ZStack {
-                    mapView(region: region)
-                }
+//            if let region = region {
+            ZStack {
+                // mapView(region: region)
+                mapView
             }
+//            }
         }
     }
 
-    private func mapView(region: Binding<MKCoordinateRegion>) -> some View {
+//    private func mapView(region: Binding<MKCoordinateRegion>) -> some View {
+    var mapView: some View {
         ZStack {
-            Map(
-                coordinateRegion: region,
-                interactionModes: .all,
-                showsUserLocation: true,
-                userTrackingMode: .constant(.follow),
-                annotationItems: locationViewModel.mapPins) { userLocation in
-                    MapAnnotation(coordinate: userLocation.coordinates) {
-
-                        LocationMapAnnotationView(isHelper: true)
-                            .shadow(radius: 10)
-                            .onTapGesture {
-                                selectedUser = userLocation
-                            }
-                    }
-                }
-                .edgesIgnoringSafeArea(.top)
+//            Map(
+//                coordinateRegion: region,
+//                interactionModes: .all,
+//                showsUserLocation: true,
+//                userTrackingMode: .constant(.follow),
+//                annotationItems: locationManager.mapPins
+//            ) { userLocation in
+//                    MapAnnotation(coordinate: userLocation.coordinates) {
+//
+//                        LocationMapAnnotationView(isHelper: true)
+//                            .shadow(radius: 10)
+//                            .onTapGesture {
+//                                selectedUser = userLocation
+//                            }
+//                    }
+//                }
+//                .edgesIgnoringSafeArea(.top)
+            MapKitUIViewRepresentable(annotations: $locationManager.mapAnnotations)
+                .edgesIgnoringSafeArea(.all)
+            Text("Annotation: \(locationManager.mapAnnotations.first?.coordinate.latitude ?? MKPointAnnotation().coordinate.latitude)")
 
             if let user = selectedUser {
                 GeometryReader { geometry in
@@ -71,58 +75,6 @@ struct MapView: View {
         }
     }
 
-    private var requestLocationView: some View {
-        ZStack {
-            Color.backgroundColor.edgesIgnoringSafeArea(.top)
-
-            VStack {
-                Spacer()
-
-                Image(systemName: "paperplane.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(.white)
-
-                Text("Would you like to see helpers or people in need nearby")
-                    .foregroundColor(.white)
-                    .font(.system(size: 28, weight: .semibold))
-                    .multilineTextAlignment(.center)
-                    .padding()
-
-                Text("Start sharing your location")
-                    .foregroundColor(.white)
-                    .font(.system(size: 18))
-                    .fontWeight(.medium)
-
-                Spacer()
-
-                VStack {
-                    Button {
-                        locationManager.requestUserLocation()
-                    } label: {
-                        Text("Allow Location")
-                            .foregroundColor(.backgroundColor)
-                            .padding()
-                            .font(.headline)
-                    }
-                    .background(Color.white)
-                    .clipShape(Capsule())
-                    
-                    Button {
-                        self.presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Text("Maybe Later")
-                            .padding()
-                            .font(.headline)
-                            .foregroundColor(.white)
-                    }
-                }
-                Spacer()
-
-            }.padding()
-        }
-    }
 }
 
 struct MapView_Previews: PreviewProvider {

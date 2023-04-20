@@ -202,7 +202,7 @@ class NetworkServices {
         let session = URLSession.shared
 
         let task = session.dataTask(with: request) { data, response, error in
-            
+
             guard error == nil else {
                 return
             }
@@ -218,7 +218,7 @@ class NetworkServices {
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] {
                     print(json)
                 }
-            } catch let error {
+            } catch _ {
                 completion(.failure(.decodingError))
             }
         }

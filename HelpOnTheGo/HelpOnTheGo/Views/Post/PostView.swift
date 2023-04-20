@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct PostView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject private var locationManager: LocationManager
+    @ObservedObject var createPostVM = CreatePostViewModel.shared
+
     @State var showCreatePost: Bool = false
     @State var refreshView: Bool = false
-    @EnvironmentObject var authViewModel: AuthViewModel
-    @ObservedObject var createPostVM = CreatePostViewModel.shared
 
     var body: some View {
         ZStack {
@@ -30,6 +32,7 @@ struct PostView: View {
         .fullScreenCover(isPresented: $showCreatePost) {
             CreatePostView()
                 .environmentObject(authViewModel)
+                .environmentObject(locationManager)
                 .onDisappear {
                     self.refreshView.toggle()
                 }

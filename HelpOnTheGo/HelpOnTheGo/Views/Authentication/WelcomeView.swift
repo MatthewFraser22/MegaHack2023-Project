@@ -11,6 +11,7 @@ struct WelcomeView: View {
     @State var toggleLoginView: Bool = false
     @State var toggleRegisterView: Bool = false
     @StateObject private var authViewModel: AuthViewModel = AuthViewModel()
+    @StateObject private var locationManager: LocationManager = LocationManager.shared
 
     var body: some View {
         NavigationView {
@@ -85,6 +86,7 @@ struct WelcomeView: View {
             NavigationLink(
                 destination: RegisterView()
                     .environmentObject(authViewModel)
+                    .environmentObject(locationManager)
                     .toolbar(.hidden), isActive: $toggleRegisterView) {
                 EmptyView()
             }
@@ -101,9 +103,13 @@ struct WelcomeView: View {
                 self.toggleLoginView.toggle()
             }
     
-            NavigationLink(destination: LoginView().environmentObject(authViewModel).toolbar(.hidden), isActive: $toggleLoginView) {
-                EmptyView()
-            }
+            NavigationLink(
+                destination: LoginView()
+                    .environmentObject(authViewModel)
+                    .environmentObject(locationManager)
+                    .toolbar(.hidden),
+                isActive: $toggleLoginView
+            ) { EmptyView() }
         }
     }
 }

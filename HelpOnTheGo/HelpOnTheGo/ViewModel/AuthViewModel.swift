@@ -43,6 +43,7 @@ class AuthViewModel: ObservableObject {
                 }
 
                 do {
+                    #warning("TODO - NO FORCE UNWRAP")
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
                     let userJson = json["user"] as! [String : Any]
                     let user = try JSONSerialization.data(withJSONObject: userJson)
